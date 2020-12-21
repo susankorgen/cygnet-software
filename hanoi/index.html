@@ -1,0 +1,69 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/doc.css" />
+<script type="text/javascript" src="js/main.js" ></script>
+<script type="text/javascript" src="js/message.js" ></script>
+<script type="text/javascript" src="js/valid.js" ></script>
+<script type="text/javascript" src="js/display.js" ></script>
+<script type="text/javascript" src="js/msg-en-us.js" ></script>
+</head>
+<body onload="window.displayDemo('');">
+<div id="div-MainView">
+<div id="div-ContentView">
+  <table border=0 cellpadding=0 cellspacing=0>
+    <tr>
+      <td id="div-LeftPanel" class="div-LeftPanel">
+        <h1 id="prompt_title"></h1>
+        <div id="prompt_doc" class="simpleIntro"></div>
+        <div id="prompt_rules" class="simpleIntro"></div>
+        <div id="prompt_size" class="simpleIntro"></div>
+        <div>
+          <input id="input_size" class="simpleInput" type="text"
+                  onkeyup = "window.validSizeRange('input_size');">
+          </input>
+        </div>
+        <div id="prompt_label" class="simpleIntro"></div>
+        <div>
+          <input id="input_label_start" class="simpleInput" type="text"
+                  onkeyup="window.validLabelRange('input_label_start');">
+          </input>
+          <input id="input_label_via" class="simpleInput" type="text"
+                  onkeyup="window.validLabelRange('input_label_via');">
+          </input>
+          <input id="input_label_end" class="simpleInput" type="text"
+                  onkeyup="window.validLabelRange('input_label_end');">
+          </input>
+        </div>
+        <div id="prompt_output" class="simpleIntro"></div>
+        <div>
+          <input id="button_svg" class="simpleButton" type="button"
+                 onclick="window.displayDemo('output_svg');">
+          </input>
+          <input id="button_text" class="simpleButton" type="button"
+                 onclick="window.displayDemo('output_text');">
+          </input>
+          <input id="button_data" class="simpleButton" type="button"
+                 onclick="window.displayDemo('output_data');">
+          </input>
+        </div>
+        <div id="prompt_reset" class="simpleIntro"></div>
+        <div>
+          <input id="button_reset" class="simpleButton" type="button" value="Reset"
+                 onclick="window.displayDemo('output_reset');">
+          </input>
+          <a id="link_en_us" ></a> |
+          <a id="link_fr_fr" disabled ></a>
+        </div>
+      </td>
+      <td class="div-RightPanel">
+        <div id="output_text" class="div-DisplayView" style="display:none;"></div>
+        <div id="output_data" class="div-DisplayView" style="display:none;"></div>
+        <div id="output_svg" class="div-DisplayView" style="display:none;"></div>
+        <div id="output_more" class="div-DisplayView" style="display:none;"></div>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+</body>
+</html>
