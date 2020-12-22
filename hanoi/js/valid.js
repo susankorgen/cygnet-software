@@ -5,8 +5,18 @@ function getTowerMaxSize() {
   return 13;
 };
 
+function getTowerDefaultSize() {
+  return 7;
+};
 function getLeftPanelWidth() {
   return 220; // match doc.css div-LeftPanel style
+};
+
+function initValues() {
+  let field = self.document.getElementById("input_size");
+  if (field) {
+    field.value = getTowerDefaultSize();
+  }
 };
 
 function validSizeRange(fieldId) {

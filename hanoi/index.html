@@ -1,11 +1,18 @@
+<?xml version="1.0" encoding="utf-16"?>
+<!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="css/doc.css" />
-<script type="text/javascript" src="js/main.js" ></script>
-<script type="text/javascript" src="js/message.js" ></script>
-<script type="text/javascript" src="js/valid.js" ></script>
-<script type="text/javascript" src="js/display.js" ></script>
-<script type="text/javascript" src="js/msg-en-us.js" ></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-16"/>
+  <meta name="description" content="Code Example: Towers of Hanoi">
+  <meta name="keywords" content="HTML, CSS, JavaScript, SVG">
+  <meta name="author" content="Susan Korgen">
+  <link rel="stylesheet" type="text/css" href="css/doc.css" />
+  <script type="text/javascript" src="js/main.js" ></script>
+  <script type="text/javascript" src="js/message.js" ></script>
+  <script type="text/javascript" src="js/valid.js" ></script>
+  <script type="text/javascript" src="js/display.js" ></script>
+  <script type="text/javascript" src="js/msg-en-us.js" ></script>
+  <script type="text/javascript" src="js/msg-fr-fr.js" ></script>
 </head>
 <body onload="window.displayDemo('');">
 <div id="div-MainView">
@@ -51,8 +58,8 @@
           <input id="button_reset" class="simpleButton" type="button" value="Reset"
                  onclick="window.displayDemo('output_reset');">
           </input>
-          <a id="link_en_us" ></a> |
-          <a id="link_fr_fr" disabled ></a>
+          <a id="link_en_us" href="#" onclick="window.resetLocale('en-us');"></a> |
+          <a id="link_fr_fr" href="#" onclick="window.resetLocale('fr-fr');"></a>
         </div>
       </td>
       <td class="div-RightPanel">

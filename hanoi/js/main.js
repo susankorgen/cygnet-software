@@ -64,6 +64,7 @@ function displayDemo(displayId) {
   // initializes the HTML elements with correct size, message text, etc.
   function initDemo() {
     adjustSizes();
+    initValues();
     initMessages();
     getMessages();
   };
@@ -192,7 +193,19 @@ function displayDemo(displayId) {
     }
   };
 };
-// TO DO: localization (French messages)
+
+function resetDemo() {
+  displayDemo('output_reset');
+};
+
+// Change the human language. Do not reset. If animation is underway, continue it.
+function resetLocale(value) {
+  if (getLocale() !== value) {
+    setLocale(value);
+    getMessages();
+  }
+};
+
 // TO DO: paging of character displays (pause after so many lines, ask "More?")
 // TO DO: animated progress bar with milestones of each disc spaced appropriately
 // TO DO: adjustSizes() upon window resize and when first displaying the page
