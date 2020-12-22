@@ -24,7 +24,7 @@ function getLocale() {
 function initMessages() {
   this.messageText = {
     "en-us": msgEnUs.getMessageText,
-    "fr-fr": msgEnUs.getMessageText // TO DO: this is a fake difference for now
+    "fr-fr": msgFrFr.getMessageText
   };
   setLocale();
 };
@@ -32,9 +32,20 @@ function initMessages() {
 // Populate the user-visible app text with messages in the current language.
 function getMessages() {
   let attr = "value";
-  setMessageField("input_size", attr);
-  for (let label of ["start", "via", "end"]) {
-    setMessageField("input_label_" + label, attr);
+  if (this.displayPost && this.displayPost.length) { // retain user choices
+    let i = 0;
+    for (let label of ["start", "via", "end"]) {
+      let field = self.document.getElementById("input_label_" + label);
+      if (field) {
+        field.value = this.displayPost[i];
+      }
+      i++;
+    }
+  }
+  else { // provide the defaults for the current locale
+    for (let label of ["start", "via", "end"]) {
+      setMessageField("input_label_" + label, attr);
+    }
   }
   for (let button of ["text", "data", "svg", "reset"]) {
     setMessageField("button_" + button, attr);
@@ -55,6 +66,6 @@ function getMessageText(id, values) {
 function setMessageField(id, attr, values) {
   let field = self.document.getElementById(id);
   if (field) {
-    field[attr] = this.messageText[getLocale()](id, values);
+    field[attr] = this.messageText[getLocale()](attr + "_" + id, values);
   }
 };

@@ -18,7 +18,7 @@ var msgEnUs = {
       case "_MoveExplained":
         if (values && (values.length === 2)) {
           textLine += (" <em>n</em> discs require ");
-          textLine += ("((2<sup><em>n</em></sup>) - 1) moves, so ");
+          textLine += ("((2<sup><em>n</em></sup>) - 1) moves, <br/>so ");
           textLine += (values[0] + " discs require " + values[1] + " moves.");
         }
         break;
@@ -40,58 +40,55 @@ var msgEnUs = {
           textLine += " to " + values[2] + ".";
         }
         break;
-      case "button_data":
-        textLine = "Numbers";
-        break;
-      case "button_reset":
-        textLine = "Reset";
-        break;
-      case "button_svg":
-        textLine = "Animation (SVG Graphics)";
-        break;
-      case "button_text":
-        textLine = "List of Moves";
-        break;
-      case "input_label_end":
-        textLine = "C";
-        break;
-      case "input_label_start":
-        textLine = "A";
-        break;
-      case "input_label_via":
-        textLine = "B";
-        break;
-      case "input_size":
-        textLine = "7";
-        break;
-      case "link_en_us":
+      case "innerHTML_link_en_us":
         textLine = "English";
         break;
-      case "link_fr_fr":
-        textLine = "Fran\u00E7ais";
+      case "innerHTML_link_fr_fr":
+        textLine = "Français";
         break;
-      case "prompt_doc":
+      case "innerHTML_prompt_doc":
         textLine += (" Goal: Move the tower of discs from ");
         textLine += (" the first to the last post in the smallest number of moves. ");
         break;
-      case "prompt_label":
+      case "innerHTML_prompt_label":
         textLine = "Name the 3 posts?";
         break;
-      case "prompt_output":
+      case "innerHTML_prompt_output":
         textLine = "Choose a demo style?";
         break;
-      case "prompt_reset":
+      case "innerHTML_prompt_reset":
         textLine = "Other options?";
         break;
-      case "prompt_rules":
+      case "innerHTML_prompt_rules":
         textLine = " Move 1 disc at a time. A disc may rest on a larger disc only. ";
         break;
-      case "prompt_size":
-        textLine = "How many discs for the tower?";
+      case "innerHTML_prompt_size":
+        textLine = "How many discs?";
         break;
-        case "prompt_title":
-          textLine = "Towers of Hanoi";
-          break;
+      case "innerHTML_prompt_title":
+        textLine = "Towers of Hanoi";
+        break;
+      case "value_button_data":
+        textLine = "Numbers";
+        break;
+      case "value_button_reset":
+        textLine = "Reset";
+        break;
+      case "value_button_svg":
+        textLine = "Animation (SVG Graphics)";
+        break;
+      case "value_button_text":
+        textLine = "List of Moves";
+        break;
+      case "value_input_label_end":
+        textLine = "End";
+        break;
+      case "value_input_label_start":
+        textLine = "Start";
+        break;
+      case "value_input_label_via":
+        textLine = "Middle";
+        break;
       default:
         break;
     }
