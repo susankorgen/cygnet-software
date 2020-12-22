@@ -1,37 +1,23 @@
-## Welcome to GitHub Pages
+## Welcome!
 
-You can use the [editor on GitHub](https://github.com/susankorgen/cygnet-software/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Code examples by Susan Korgen. 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## hanoi - December 2020
 
-### Markdown
+Solves the Towers of Hanoi problem on the fly using pure, raw JavaScript, HTML, CSS, and generated SVG code. 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+The animation represents the puzzle solving itself for the number of discs selected by the user (there are limits). 
 
-```markdown
-Syntax highlighted code block
+The demo adjusts animation speed by number of discs, so the user can get to the end. The demo showcases the steep rise in cost for order 2^n computation. It makes a strong case for avoiding recursion and for intelligently balancing storage with computation.
 
-# Header 1
-## Header 2
-### Header 3
+I last used these languages in late 2016, so this example shows my speed of learning and re-learning. Since 2016 I have been working in a proprietary database language unrelated to user interfaces. It took me 5-7 days to review these languages and tools, design the example to showcase specific skills, and create the first version.  
 
-- Bulleted
-- List
+The code incorporates many UI best practices that I retain from years of experience in developing product UIs. These practices are independent of which development stack you choose. It was important to me to show they can be addressed, regardless of stack, in simple and effective ways. The list of UI best practices is long. A few examples:
 
-1. Numbered
-2. List
+- Make it easy for the app to be translated into different human languages. 
+- Avoiding showing more data than the user can process (page results).
+- Do not recompute what you already know (selectively stash data to re-use).
 
-**Bold** and _Italic_ and `Code` text
+Status: Solid first version - December 21, 2020
 
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/susankorgen/cygnet-software/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Plan to add more? Yes. TO DO: comments at end of main.js.
