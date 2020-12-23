@@ -50,8 +50,9 @@ function getMessages() {
   for (let button of ["text", "data", "svg", "reset"]) {
     setMessageField("button_" + button, attr);
   }
+  toggleExplain(true);
   attr = "innerHTML";
-  for (let prompt of ["title", "doc", "rules", "size", "label", "output", "reset"]) {
+  for (let prompt of ["title", "doc", "rules", "size", "label", "output", "locale", "reset"]) {
     setMessageField("prompt_" + prompt, attr);
   }
   for (let link of ["en_us", "fr_fr"]) {

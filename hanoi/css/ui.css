@@ -1,0 +1,43 @@
+/*
+ *  hanoi/css/ui.css by susan.korgen 2020
+ *    - for use with hanoi/index.html
+ *    - hanoi/index.html must also link the parent stylesheet ../doc.css
+ */
+
+ .div-DisplayView {
+   margin: 0 0 0 0;
+   padding: 0 0 0 0;
+ }
+
+ .div-LeftPanel {
+   vertical-align:top;
+   padding-right:20px;
+   width: 220px;
+   max-width: 220px;
+   min-width: 220px;
+ }
+
+ .div-RightPanel {
+   vertical-align:top;
+   border-left: 1px solid lightgray;
+   padding-left: 20px;
+ }
+
+ #div-ContentView div.simpleIntro {
+   padding-top: 5px;
+ }
+
+ #div-ContentView div.simpleEnding {
+   padding-bottom: 5px;
+ }
+
+ #div-ContentView div .simpleInput {
+   margin: 0px 5px 5px 0px;
+   width: 50px;
+   max-width: 50px;
+   min-width: 50px;
+ }
+
+ .simpleButton {
+   margin: 0px 5px 5px 0px;
+ }

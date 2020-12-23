@@ -62,8 +62,11 @@ var msgEnUs = {
       case "innerHTML_prompt_label":
         textLine = "Name the 3 towers?";
         break;
+      case "innerHTML_prompt_locale":
+        textLine = "Change language?";
+        break;
       case "innerHTML_prompt_output":
-        textLine = "Start the demo in which style?";
+        textLine = "Click to start the demo:";
         break;
       case "innerHTML_prompt_reset":
         textLine = "Other options?";
@@ -80,8 +83,14 @@ var msgEnUs = {
       case "value_button_data":
         textLine = "Numbers";
         break;
+      case "value_button_explain_hide":
+        textLine = "Hide Rules";
+        break;
+      case "value_button_explain_show":
+        textLine = "Show Rules";
+        break;
       case "value_button_reset":
-        textLine = "Reset";
+        textLine = "Stop Demo";
         break;
       case "value_button_svg":
         textLine = "Animation (SVG Graphics)";

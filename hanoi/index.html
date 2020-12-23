@@ -6,7 +6,8 @@
   <meta name="description" content="Code Example: Towers of Hanoi">
   <meta name="keywords" content="HTML, CSS, JavaScript, SVG">
   <meta name="author" content="Susan Korgen">
-  <link rel="stylesheet" type="text/css" href="css/doc.css" />
+  <link rel="stylesheet" type="text/css" href="css/ui.css" />
+  <link rel="stylesheet" type="text/css" href="../css/doc.css" />
   <script type="text/javascript" src="js/main.js" ></script>
   <script type="text/javascript" src="js/message.js" ></script>
   <script type="text/javascript" src="js/valid.js" ></script>
@@ -21,8 +22,18 @@
     <tr>
       <td id="div-LeftPanel" class="div-LeftPanel">
         <h1 id="prompt_title"></h1>
-        <div id="prompt_doc" class="simpleIntro"></div>
-        <div id="prompt_rules" class="simpleIntro"></div>
+        <div id="prompt_output" class="simpleIntro"></div>
+        <div>
+          <input id="button_svg" class="simpleButton" type="button"
+                 onclick="window.displayDemo('output_svg');">
+          </input>
+          <input id="button_text" class="simpleButton" type="button"
+                 onclick="window.displayDemo('output_text');">
+          </input>
+          <input id="button_data" class="simpleButton" type="button"
+                 onclick="window.displayDemo('output_data');">
+          </input>
+        </div>
         <div id="prompt_size" class="simpleIntro"></div>
         <div>
           <input id="input_size" class="simpleInput" type="text"
@@ -41,27 +52,25 @@
                   onkeyup="window.validLabelRange('input_label_end');">
           </input>
         </div>
-        <div id="prompt_output" class="simpleIntro"></div>
-        <div>
-          <input id="button_svg" class="simpleButton" type="button"
-                 onclick="window.displayDemo('output_svg');">
-          </input>
-          <input id="button_text" class="simpleButton" type="button"
-                 onclick="window.displayDemo('output_text');">
-          </input>
-          <input id="button_data" class="simpleButton" type="button"
-                 onclick="window.displayDemo('output_data');">
-          </input>
-        </div>
-        <div id="prompt_reset" class="simpleIntro"></div>
-        <div>
-          <input id="button_reset" class="simpleButton" type="button" value="Reset"
-                 onclick="window.displayDemo('output_reset');">
-          </input>
+        <div id="prompt_locale" class="simpleIntro"></div>
+        <div class="simpleEnding">
           <a id="link_en_us" href="#" onclick="window.resetLocale('en-us');"></a> |
           <a id="link_fr_fr" href="#" onclick="window.resetLocale('fr-fr');"></a>
         </div>
-      </td>
+        <div id="prompt_reset" class="simpleIntro"></div>
+        <div>
+          <input id="button_explain" class="simpleButton" type="button"
+                 onclick="window.toggleExplain();">
+          </input>
+          <input id="button_reset" class="simpleButton" type="button"
+                 onclick="window.resetDemo();">
+          </input>
+        </div>
+        <div id="explain" style="display:none;">
+          <div id="prompt_doc" class="simpleIntro"></div>
+          <div id="prompt_rules" class="simpleIntro"></div>
+        </div>
+    </td>
       <td class="div-RightPanel">
         <div id="output_text" class="div-DisplayView" style="display:none;"></div>
         <div id="output_data" class="div-DisplayView" style="display:none;"></div>

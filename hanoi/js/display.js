@@ -18,7 +18,7 @@ function outputDisplay(displayId, displayMatrix, displayPost) {
       default:
         return "";
     }
-  }
+  };
 
   function isDisplayDataValid(displayMatrix, displayPost) {
     let isValid = false;
@@ -31,6 +31,7 @@ function outputDisplay(displayId, displayMatrix, displayPost) {
   };
 
   function outputText(displayMatrix, displayPost) {
+    styleDemoPrompt();
     var displayLength = displayMatrix.length;
     var towerSize = displayMatrix[0]["0"].length - 1;
     var towerString = towerSize.toString();
@@ -55,6 +56,7 @@ function outputDisplay(displayId, displayMatrix, displayPost) {
   };
 
   function outputData(displayMatrix, displayPost) {
+    styleDemoPrompt();
     var displayLength = displayMatrix.length;
     var towerSize = displayMatrix[0]["0"].length - 1;
     var towerString = towerSize.toString();
@@ -92,6 +94,7 @@ function outputDisplay(displayId, displayMatrix, displayPost) {
   // (1) calling clearInterval at start, in case button is clicked during animation
   // (2) TO DO: a progress timer updating at faster (smoother) time interval
   function outputSVG(displayId, displayMatrix, displayPost) {
+    styleDemoPrompt();
     if (this.timer) {
       clearInterval(this.timer);
     }
@@ -279,6 +282,37 @@ function outputDisplay(displayId, displayMatrix, displayPost) {
     htmlString.push("</" + tagName + ">");
     return htmlString.join("");
   };
+};
+
+// With no arguments, the method toggles the Show/Hide display status of
+// the puzzle explanation and the Show/Hide text of the related button.
+// If you call the method with localeOnly === true,
+// the method leaves the Show/Hide display status unchanged and
+// instead, updates the locale language of the rules and button text.
+function toggleExplain(localeOnly) {
+  localeOnly = (typeof localeOnly === "undefined") ? false : localeOnly;
+  let field = self.document.getElementById("explain");
+  let button = self.document.getElementById("button_explain");
+  if (field && button) {
+    let showText = getMessageText("value_button_explain_show");
+    let hideText = getMessageText("value_button_explain_hide");
+    let hidden = (field.style.display === "none");
+    if (localeOnly) {
+      button.value = hidden ? showText : hideText;
+    }
+    else {
+      button.value = hidden ? hideText : showText;
+      field.style.display = hidden ? "block" : "none";
+    }
+  }
+};
+
+function styleDemoPrompt(strong) {
+  strong = (typeof strong === "undefined") ? false : strong;
+  var div = self.document.getElementById("prompt_output");
+  if (div) {
+    div.style.color = strong ? "red" : "rgb(60,60,60)";
+  }
 };
 
 // TO DO: Call upon resize and when first displaying the page.
