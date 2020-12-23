@@ -9,6 +9,15 @@ var msgFrFr = {
       case "_BadDiscSize":
         textLine = "Erreur: taille de disque inattendue trouvée";
         break;
+      case "_DiscAtRest":
+        textLine = "Disque au repos";
+        break;
+      case "_DiscInMotion":
+        textLine = "Disque en mouvement";
+        break;
+      case "_DiscTower":
+        textLine = "La tour";
+        break;
       case "_MoveCount":
         if (values && (values.length === 2)) {
           textLine = " C&rsquo;est le mouvement " + values[0] + " de " + values [1] + ".";
@@ -53,7 +62,7 @@ var msgFrFr = {
         textLine = "Nommez les 3 tours?";
         break;
       case "innerHTML_prompt_output":
-        textLine = "Choisissez un style de démonstration?";
+        textLine = "Commencer la démo dans quel style?";
         break;
       case "innerHTML_prompt_reset":
         textLine = "Autres options?";
