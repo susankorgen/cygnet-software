@@ -36,17 +36,18 @@ function outputDisplay(displayId, displayMatrix, displayPost) {
     var towerString = towerSize.toString();
     var displaySpace = displayLength.toString().length;
     var displayCurrent = {};
+    var textLine = "";
     var fullText = "";
     fullText += "<pre>";
     for (var i = 1; i < displayLength; i++) {
       displayCurrent = displayMatrix[i];
       var values = [displayCurrent.disc, displayPost[displayCurrent.from], displayPost[displayCurrent.to]];
       var moveString = i.toString();
-      textLine = "    ";
+      textLine = "";
       for (var m = displaySpace; m > moveString.length; m--) {
         textLine += " ";
       }
-      textLine += moveString + ": " + getMessageText("_TextDisplayLine", values);
+      textLine += " " + moveString + ": " + getMessageText("_TextDisplayLine", values);
       fullText += textLine + "\n";
     }
     fullText += "</pre>";
@@ -68,11 +69,11 @@ function outputDisplay(displayId, displayMatrix, displayPost) {
     for (var i = 0; i < displayLength; i++) {
       displayCurrent = displayMatrix[i];
       moveString = i.toString();
-      textLine = "  ";
+      textLine = "";
       for (var m = displaySpace; m > moveString.length; m--) {
         textLine += " ";
       }
-      textLine += (i > 0) ? (moveString + ":") : "  ";
+      textLine += " " + (i > 0) ? (moveString + ":") : "  ";
       textLine += "  ";
       for (let prop in displayCurrent) {
         if (displayCurrent.hasOwnProperty(prop) &&
@@ -137,8 +138,9 @@ function outputDisplay(displayId, displayMatrix, displayPost) {
     var heightFactorBase = parseInt(towerSize / 2.5);
     var fullText = "";
 
+    // SVG start
     let svgW = window.innerWidth - getTowerMaxSize();
-    let svgH = parseInt(towerSize * row * 2);
+    let svgH = parseInt((towerSize + 2) * row * 2) // drawing + legend
     fullText += svgStart(svgW, svgH);
 
     // towers and discs
@@ -167,11 +169,11 @@ function outputDisplay(displayId, displayMatrix, displayPost) {
         x = left;
         y = top;
         w = maxWidth;
-        h = heightFactorBase * row;
-        fullText += svgRect(x, y, w, h, postColor);
+        hBase = heightFactorBase * row;
+        fullText += svgRect(x, y, w, hBase, postColor);
         x = left - nudge;
         y = top + nudge;
-        h -= unit;
+        h = hBase - unit;
         w = unit;
         fullText += svgRect(x, y, w, h, "white", "8", "8");
         x += maxWidth;
@@ -179,16 +181,35 @@ function outputDisplay(displayId, displayMatrix, displayPost) {
       }
     }
     // post base labels
-    y += (h - ((heightFactorBase - 1) * nudge));
+    y = top + (hBase / 2) + nudge;
     x = cx["0"] + nudge;
-    fullText += svgLabel(x, y, "black", displayPost["0"]);
+    fullText += svgLabel(x, y, "black", "2", displayPost["0"], "middle");
     x += (maxWidth + unit);
-    fullText += svgLabel(x, y, "black", displayPost["1"]);
+    fullText += svgLabel(x, y, "black", "2", displayPost["1"], "middle");
     x += (maxWidth + unit);
-    fullText += svgLabel(x, y, "black", displayPost["2"]);
+    fullText += svgLabel(x, y, "black", "2", displayPost["2"], "middle");
+    // legend
+    y = top + hBase + (2 * unit);
+    x = unit;
+    let rIn = unit / 2;
+    let rOut = (towerSize < 8) ? 2 * unit : 3 * unit;
+    x += rOut;
+    y += rOut;
+    fullText += svgCircle(x, y, rOut, atRest);
+    fullText += svgCircle(x, y, rIn, postColor);
+    x += rOut + nudge;
+    let message = getMessageText("_DiscAtRest");
+    fullText += svgLabel(x, y, "#090909", "1", message, "left");
+    x += parseInt(message.length * getFontHorizontalFactor()) + rOut + unit;
+    fullText += svgCircle(x, y, rOut, inMotion);
+    fullText += svgCircle(x, y, rIn, postColor);
+    x += rOut + nudge;
+    message = getMessageText("_DiscInMotion");
+    fullText += svgLabel(x, y, "#090909", "1", message, "left");
+
+    // SVG end
     fullText += '</svg>';
 
-    // messages
     let lengthString = (displayLength - 1).toString();
     fullText += outputElement("p", getMessageText("_MoveExplained", [towerSize, lengthString]));
     if (snapshot > 0) {
@@ -200,16 +221,16 @@ function outputDisplay(displayId, displayMatrix, displayPost) {
   };
 
   function svgStart(w, h) {
-    var svgLine = '<svg';
+    let svgLine = '<svg';
     svgLine += ' width="' + w + '" height="' + h + '"';
     svgLine += ' viewBox="0 0 ' + w + ' ' + h + '"';
-    svgLine += ' style="background-color:white;"';
+    svgLine += ' style="background-color:white;border-bottom:1px solid lightgray;"';
     svgLine += '>';
     return svgLine;
   }
 
   function svgRect(x, y, w, h, f, rx, ry) {
-    var svgLine = '<rect';
+    let svgLine = '<rect';
     svgLine += ' x="' + x + '" y="' + y + '"';
     svgLine += ' width="' + w + '" height="' + h + '"';
     svgLine += ' style="fill:' + f + ';stroke:' + f + ';stroke-width:2;"';
@@ -223,12 +244,21 @@ function outputDisplay(displayId, displayMatrix, displayPost) {
     return svgLine;
   };
 
-  function svgLabel(x, y, color, text) {
-    let textStyle = '" style="font-size:12pt;font-family:Arial;text-anchor:middle;';
-    var svgLine = '';
-    svgLine += '<text x="' + x + '" y="' + y;
-    svgLine += textStyle + 'stroke:' + color + ';fill:' + color + ';"';
+  function svgLabel(x, y, color, stroke, text, align) {
+    let svgLine = '<text';
+    svgLine += ' x="' + x + '" y="' + y;
+    svgLine += '" style="font-size:' + getFontSize().toString();
+    svgLine += 'pt;font-family:Arial;text-anchor:' + align + ';';
+    svgLine += 'stroke:' + stroke + ';fill:' + color + ';"';
     svgLine += '>' + text + '</text>';
+    return svgLine;
+  };
+
+  function svgCircle(cx, cy, r, color) {
+    let svgLine = '<circle';
+    svgLine += ' cx="' + cx + '" cy="' + cy + '" r="' + r + '"';
+    svgLine += ' style="stroke:' + color + ';fill:' + color + ';"';
+    svgLine += '/>';
     return svgLine;
   };
 
@@ -243,7 +273,9 @@ function outputDisplay(displayId, displayMatrix, displayPost) {
     // /most-efficient-way-to-concatenate-strings-in-javascript
     htmlString = [];
     htmlString.push("<" + tagName + ">");
-    htmlString.push(content);
+    if (typeof content !== "undefined") {
+      htmlString.push(content);
+    }
     htmlString.push("</" + tagName + ">");
     return htmlString.join("");
   };

@@ -8,8 +8,17 @@ function getTowerMaxSize() {
 function getTowerDefaultSize() {
   return 7;
 };
+
 function getLeftPanelWidth() {
   return 220; // match doc.css div-LeftPanel style
+};
+
+function getFontSize() {
+  return 12;
+};
+
+function getFontHorizontalFactor() {
+  return getFontSize() * 0.75; 
 };
 
 function initValues() {

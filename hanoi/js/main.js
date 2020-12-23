@@ -209,7 +209,8 @@ function resetLocale(value) {
 // TO DO: paging of character displays (pause after so many lines, ask "More?")
 // TO DO: animated progress bar with milestones of each disc spaced appropriately
 // TO DO: adjustSizes() upon window resize and when first displaying the page
-// TO DO: green (or orange) text on black for cuter termina/character displays
+// TO DO: clean up SVG generation to avoid unnecessary duplication of effort
+// TO DO: green (or orange) text on black for cuter terminal/character displays
 // TO DO: pause/resume animation in addition to reset (which stops cold)
 // TO DO: on page load, display first still frame of graphics (using defaults)
 // TO DO: research and apply best practices for let vs. var

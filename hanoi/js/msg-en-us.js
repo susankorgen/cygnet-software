@@ -10,6 +10,15 @@ var msgEnUs = {
       case "_BadDiscSize":
         textLine = "Error: unexpected disc size found";
         break;
+      case "_DiscAtRest":
+        textLine = "Disc at rest";
+        break;
+      case "_DiscInMotion":
+        textLine = "Disc in motion";
+        break;
+      case "_DiscTower":
+        textLine = "Tower";
+        break;
       case "_MoveCount":
         if (values && (values.length === 2)) {
           textLine = " This is move " + values[0] + " of " + values [1] + ".";
@@ -27,7 +36,7 @@ var msgEnUs = {
         break;
       case "_NumberDisplayIntro":
         textLine += (" Left to right is top to bottom. ");
-        textLine += (" Numbers > 0 means a disc of that size is on that post. ");
+        textLine += (" Numbers > 0 means a disc of that size is on that tower. ");
         textLine += (" 0 means no disc. ");
         break;
       case "_SmallDiscSize":
@@ -36,7 +45,7 @@ var msgEnUs = {
       case "_TextDisplayLine":
         if (values && (values.length === 3)) {
           textLine += " Move disc " + values[0];
-          textLine += " from post " + values [1];
+          textLine += " from tower " + values [1];
           textLine += " to " + values[2] + ".";
         }
         break;
@@ -48,13 +57,13 @@ var msgEnUs = {
         break;
       case "innerHTML_prompt_doc":
         textLine += (" Goal: Move the tower of discs from ");
-        textLine += (" the first to the last post in the smallest number of moves. ");
+        textLine += (" the first to the last tower in the smallest number of moves. ");
         break;
       case "innerHTML_prompt_label":
-        textLine = "Name the 3 posts?";
+        textLine = "Name the 3 towers?";
         break;
       case "innerHTML_prompt_output":
-        textLine = "Choose a demo style?";
+        textLine = "Start the demo in which style?";
         break;
       case "innerHTML_prompt_reset":
         textLine = "Other options?";
