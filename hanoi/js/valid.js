@@ -32,13 +32,19 @@ function validSizeRange(fieldId) {
   let validated = 0;
   let field = self.document.getElementById(fieldId);
   if (field) {
-    let valueInt = parseInt(field.value);
-    if ((valueInt < 5) || (valueInt > getTowerMaxSize())) {
+    let valueString = field.value;
+    if (isNaN(valueString)) {
       toggleValid(fieldId, false);
     }
     else {
-      toggleValid(fieldId, true);
-      validated = field.value;
+      let valueInt = parseInt(field.value);
+      if ((valueInt < 5) || (valueInt > getTowerMaxSize())) {
+        toggleValid(fieldId, false);
+      }
+      else {
+        toggleValid(fieldId, true);
+        validated = field.value;
+      }
     }
   }
   return validated;

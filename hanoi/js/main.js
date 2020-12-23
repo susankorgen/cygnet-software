@@ -17,6 +17,7 @@ function displayDemo(displayId) {
     initDemo();
     return;
   }
+  // now do the appropriate work for the displayId
 
   // validate user input
   var towerString = validSizeRange("input_size");
@@ -195,7 +196,8 @@ function displayDemo(displayId) {
 };
 
 function resetDemo() {
-  displayDemo('output_reset');
+  displayDemo("output_reset");
+  styleDemoPrompt(true);
 };
 
 // Change the human language. Do not reset. If animation is underway, continue it.
@@ -203,16 +205,20 @@ function resetLocale(value) {
   if (getLocale() !== value) {
     setLocale(value);
     getMessages();
+    toggleExplain(true);
   }
 };
 
 // TO DO: paging of character displays (pause after so many lines, ask "More?")
+// TO DO: favicon
 // TO DO: animated progress bar with milestones of each disc spaced appropriately
+// TO DO: track how long full animation takes; list time at the end with "Done!"
 // TO DO: adjustSizes() upon window resize and when first displaying the page
 // TO DO: clean up SVG generation to avoid unnecessary duplication of effort
 // TO DO: green (or orange) text on black for cuter terminal/character displays
 // TO DO: pause/resume animation in addition to reset (which stops cold)
-// TO DO: on page load, display first still frame of graphics (using defaults)
+// TO DO: stop animation (if displaying) if the user starts modifying inputs
+// TO DO: style input field/buttons visually; currently using browser defaults.
 // TO DO: research and apply best practices for let vs. var
 // TO DO: display a color legend for the graphics (atRest vs. inMotion)
 // TO DO: point out: Towers of Buddha (Hanoi) illustrate eternity: big-O of 2^n

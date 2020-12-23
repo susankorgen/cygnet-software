@@ -1,6 +1,7 @@
 // msg-fr-fr.js
 // Application message text for the fr-fr locale (French - France).
-// Translations by Google Translate.
+// Translations by Google Translate at
+// https://translate.google.com/?sl=en&tl=fr&op=translate
 
 var msgFrFr = {
   "getMessageText" : (function(id, values) {
@@ -61,8 +62,11 @@ var msgFrFr = {
       case "innerHTML_prompt_label":
         textLine = "Nommez les 3 tours?";
         break;
+      case "innerHTML_prompt_locale":
+        textLine = "Changer de langue?";
+        break;
       case "innerHTML_prompt_output":
-        textLine = "Commencer la démo dans quel style?";
+        textLine = "Cliquez pour démarrer la démo:";
         break;
       case "innerHTML_prompt_reset":
         textLine = "Autres options?";
@@ -79,8 +83,14 @@ var msgFrFr = {
       case "value_button_data":
         textLine = "Les nombres";
         break;
+      case "value_button_explain_hide":
+        textLine = "Masquer les règles";
+        break;
+      case "value_button_explain_show":
+        textLine = "Afficher les règles";
+        break;
       case "value_button_reset":
-        textLine = "Réinitialiser";
+        textLine = "Arrêter la démo";
         break;
       case "value_button_svg":
         textLine = "Animation (graphiques SVG)";

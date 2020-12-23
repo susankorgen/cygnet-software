@@ -14,7 +14,7 @@ strike {
 
 #div-ContentView {
   font-family: "open_sansregular", "Helvetica", Helvetica, Arial, sans-serif;
-  padding-top: 20px;
+  padding-top: 0px;
   padding-bottom: 20px;
   padding-left: 20px;
   padding-right: 20px;
@@ -60,16 +60,23 @@ strike {
   text-align: left;
 }
 
-#div-ContentView th {
+#div-ContentView table tr th {
   font-family: "open_sansregular", "Helvetica", Helvetica, Arial, sans-serif;
   font-size: 15px;
   color: rgb(60,60,60);
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding: 9px 9px 9px 9px;
   text-align: left;
   font-weight: 700;
 }
 
+#div-ContentView table tr td {
+  font-family: "open_sansregular", "Helvetica", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  color: rgb(60,60,60);
+  padding: 0px 12px 0px 12px;
+  text-align: left;
+  font-weight: normal;
+}
 #div-ContentView b,
 #div-ContentView div b,
 #div-ContentView p b,
@@ -109,43 +116,9 @@ strike {
 #div-ContentView ol li a {
   color:rgb(20,149,204);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 15px;
   font-weight:normal;
   cursor:pointer;
-}
-
-.div-DisplayView {
-  margin: 0 0 0 0;
-  padding: 0 0 0 0;
-}
-
-.div-LeftPanel {
-  vertical-align:top;
-  padding-right:20px;
-  width: 220px;
-  max-width: 220px;
-  min-width: 220px;
-}
-
-.div-RightPanel {
-  vertical-align:top;
-  border-left: 1px solid lightgray;
-  padding-left: 20px;
-}
-
-.simpleIntro {
-  margin: 0px 12px 0px 0px;
-}
-
-.simpleInput {
-  margin: 0px 5px 5px 0px;
-  width: 60px;
-  max-width: 60px;
-  min-width: 60px;
-}
-
-.simpleButton {
-  margin: 0px 5px 5px 0px;
 }
 
 tr.zebraOn td {
