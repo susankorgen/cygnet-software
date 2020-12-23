@@ -220,8 +220,6 @@ function resetLocale(value) {
 // TO DO: stop animation (if displaying) if the user starts modifying inputs
 // TO DO: style input field/buttons visually; currently using browser defaults.
 // TO DO: research and apply best practices for let vs. var
-// TO DO: display a color legend for the graphics (atRest vs. inMotion)
-// TO DO: point out: Towers of Buddha (Hanoi) illustrate eternity: big-O of 2^n
 // TO DO: provide a regex example, such as when testing text input values
 // TO DO: text inputs too short for cross-site scripting; escape them anyway
 // TO DO: provide a simple range bar widget for choosing the tower height
