@@ -6,8 +6,6 @@ Code examples by Susan Korgen.
 
 Solves the Towers of Hanoi problem on the fly using pure, raw JavaScript, HTML, CSS, and generated SVG code. 
 
-**Try it!** Download the zip, extract files, open hanoi/index.html in a browser.
-
 The animation represents the puzzle solving itself for the number of discs selected by the user (there are limits). 
 
 The demo adjusts animation speed by number of discs, so the user can get to the end. The demo showcases the steep rise in cost for order 2^n computation. It makes a strong case for avoiding recursion and for intelligently balancing storage with computation.
@@ -25,3 +23,4 @@ Status:
 - Solid first version with English/French localization - December 23, 2020
 - Plan to add more? Yes. TO DO: comments at end of main.js.
 
+**Try it!** Download the zip, extract files, open hanoi/index.html in a browser.
