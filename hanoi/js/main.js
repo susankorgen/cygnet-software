@@ -165,7 +165,7 @@ function displayDemo(displayId) {
     var button = self.document.getElementById(chosenId);
     if (button) {
       if (displayId === chosenId.replace("button_", "output_")) {
-        button.style.background = "#f7f7c5";
+        button.style.background = "#FAF5AF";
       }
       else {
         button.style.background = "";
@@ -209,13 +209,12 @@ function resetLocale(value) {
   }
 };
 
-// TO DO: paging of character displays (pause after so many lines, ask "More?")
+// TO DO: paging of multiline displays; different paging type for moves vs. data
 // TO DO: favicon
 // TO DO: animated progress bar with milestones of each disc spaced appropriately
 // TO DO: track how long full animation takes; list time at the end with "Done!"
 // TO DO: adjustSizes() upon window resize and when first displaying the page
-// TO DO: clean up SVG generation to avoid unnecessary duplication of effort
-// TO DO: green (or orange) text on black for cuter terminal/character displays
+// TO DO: clean up SVG generation to avoid unnecessary duplication and effort
 // TO DO: pause/resume animation in addition to reset (which stops cold)
 // TO DO: stop animation (if displaying) if the user starts modifying inputs
 // TO DO: style input field/buttons visually; currently using browser defaults.
@@ -223,9 +222,10 @@ function resetLocale(value) {
 // TO DO: provide a regex example, such as when testing text input values
 // TO DO: text inputs too short for cross-site scripting; escape them anyway
 // TO DO: provide a simple range bar widget for choosing the tower height
+// TO DO: support change of theme (daytime vs. nighttime) to exercise CSS skills
 // TO DO: document the specific UI best practice skills here
 // TO DO: document the specific JavaScript language skills here
-// TO DO: mobile form factor (see adjustSizes() above)
+// TO DO: mobile form factor (but is actually pretty good already on iPhone11)
 // TO DO: document "startup" [re]learning/choices (IDE, source control, etc.)
 // TO DO: non-Latin characters (Chinese messages)
 // TO DO: right to left text (Hebrew or Arabic messages)
