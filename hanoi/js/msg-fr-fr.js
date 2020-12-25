@@ -87,7 +87,7 @@ var msgFrFr = {
         textLine = "Masquer les règles";
         break;
       case "value_button_explain_show":
-        textLine = "Afficher les règles";
+        textLine = "Comment ça fonctionne";
         break;
       case "value_button_reset":
         textLine = "Arrêter la démo";

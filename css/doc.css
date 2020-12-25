@@ -64,7 +64,7 @@ strike {
   font-family: "open_sansregular", "Helvetica", Helvetica, Arial, sans-serif;
   font-size: 15px;
   color: rgb(60,60,60);
-  padding: 9px 9px 9px 9px;
+  padding: 9px 12px 9px 12px;
   text-align: left;
   font-weight: 700;
 }
@@ -76,7 +76,9 @@ strike {
   padding: 0px 12px 0px 12px;
   text-align: left;
   font-weight: normal;
+  vertical-align:top;
 }
+
 #div-ContentView b,
 #div-ContentView div b,
 #div-ContentView p b,
@@ -129,4 +131,20 @@ tr.zebraOn td {
 tr.zebraOff td {
   vertical-align: top;
   background-color: rgb(255,255,255);
+}
+
+#div-ContentView table tr td p.accordion {
+  color:lightgray;
+  font-size:24pt;
+  margin-top:8px;
+  margin-left:-2px;
+  cursor:pointer;
+}
+
+#div-ContentView table tr td p span.link_disabled {
+  display:none;
+}
+
+#div-ContentView table tr td p span.link_enabled {
+  display:block;
 }

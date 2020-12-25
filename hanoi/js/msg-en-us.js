@@ -87,7 +87,7 @@ var msgEnUs = {
         textLine = "Hide Rules";
         break;
       case "value_button_explain_show":
-        textLine = "Show Rules";
+        textLine = "How it Works";
         break;
       case "value_button_reset":
         textLine = "Stop Demo";
