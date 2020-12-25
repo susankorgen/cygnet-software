@@ -7,63 +7,170 @@
   <meta name="keywords" content="HTML, CSS, JavaScript, SVG">
   <meta name="author" content="Susan Korgen">
   <link rel="stylesheet" type="text/css" href="css/doc.css" />
+  <script type="text/javascript" src="js/nav.js" ></script>
 </head>
-<body>
+<body onload="window.toggleExpand('*', false);">
 <div id="div-MainView">
 <div id="div-ContentView">
-<h1>Welcome!</h1>
-<p>Code examples by Susan Korgen.</p>
-  <table border=1 style="border-collapse: collapse;border:1px solid lightgray;" >
-    <tr>
+  <!--
+    I did not set up language localization for text content here; please see
+    my Towers of Hanoi code example index.html and js for that UI best practice.
+  -->
+  <p>
+    Code examples by Susan Korgen.
+  </p>
+  <table id="examples" border=1 style="border-collapse: collapse;border:1px solid lightgray;" >
+    <tr id="table_header">
       <th>Click to Demo</th>
+      <th>Click for Code</th>
+      <th>Details</th>
       <th>Features</th>
       <th>Status Now</th>
-      <th>Development Time and Research to Date</th>
+      <th>Dev Time</th>
+      <th>Project Notes</th>
     </tr>
-    <tr>
-      <td valign="top">
-        <p>
-          <a id="link_hanoi" href="hanoi/index.html">Towers of Hanoi</a>
+    <tr id="row_hanoi" class="tr_expand">
+      <td class="td_expand">
+        <p class="p_summary">
+          <a id="link_hanoi" href="hanoi/index.html">Towers&nbsp;of&nbsp;Hanoi</a>
         </p>
       </td>
-      <td valign="top">
+      <td class="td_expand">
+        <p class="p_summary">
+          <a id="code_hanoi" href="https://github.com/susankorgen/cygnet-software/tree/master/hanoi">GitHub</a>
+        </p>
+        <td class="td_expand">
+          <p class="accordion">
+            <span id="more_hanoi" class="link_enabled" href="#" onclick="window.toggleExpand('row_hanoi', true);">
+              &#x25BC;
+            </span>
+            <span id="less_hanoi" class="link_disabled" href="#" onclick="window.toggleExpand('row_hanoi', false);">
+              &#x25B2;
+            </span>
+          </p>
+        </td>
+      </td>
+        <td class="td_expand">
+        <p class="p_summary">
+          Animate the classic recursion problem using pure, raw JavaScript, HTML, CSS, and SVG.
+        </p>
         <p>
-          Pure, raw JavaSript, HTML, CSS, and SVG.
-        </p><p>
-          The SVG graphics are not downloaded images; they are generated as SVG XML content when this code runs.
-        </p><p>
-          Showcases UX and UI development best practices independent of coding language and technology stack.
+          The SVG graphics are not downloaded images; they are dynamically generated as SVG XML content when this code runs.
+        </p>
+        <p>
+          Computed data for each tower height the user chooses (5, 6, ... , 12, 13) is retained during the session in case of a repeat demo.
+        </p>
+        <p>
+          The code showcases UX and UI development best practices that are independent of coding language and technology stack.
         </p>
       </td>
-      <td valign="top">
-        <p>
-          Animates the classic recursion problem.
+      <td class="td_expand">
+        <p class="p_summary">
+          A solid first implementation.
         </p><p>
           Graphically illustrates the cost of order 2<sup>n</sup> computation.
         </p><p>
-           Supports a user language choice of English or French and easy translation for other user languages.
-         </p><p>
-         A solid first implementation.
-      </p>
-    </td>
-      <td valign="top">
-        <p>
-          8 days, after 4 years full time using a different, proprietary server side language full time
-          for database development.
-          Prior to these 4 years, I wrote and generated JavaScript as a UI developer full time from 2009-2016.
+          Supports a user language choice of English or French and
+          easy translation for other user languages.
         </p><p>
-          The 8 days started with 2 days of <em>Javascript: The Good Parts</em> by Douglas Crockford.
-          Page 34 mentions the hanoi problem and provides a loop.
+          Comments at the end of <strong>hanoi/main.js</strong> list the specific
+          planned updates: UI/UX coding best practices
+          that I have not added to the example yet.
+        </p>
+      </td>
+      <td class="td_expand">
+        <p class="p_summary">
+          8&nbsp;days.
+        </p>
+      </td>
+      <td class="td_expand">
+        <p class="p_summary">
+          A return to JavaScript and front end development
+          after 4 years using a proprietary,
+          object-oriented database language in back end development.
+          Decided to also use all new tools (Atom, GitHub, GitHub desktop)
+          as a change from the proprietary IDE.
+        </p><p>
+          8 days for this example began with 2 days of
+          <em>JavaScript: The Good Parts</em> by Douglas Crockford.
+          Page 34 mentions the hanoi problem and provides a 3-line loop.
+        </p><p>
           Recursion can be challenging to visualize.
+          I was inspired to build my <strong>hanoi</strong> animation
+          as my first JavaScript code example.
         </p><p>
-          Page 34 inspired me to build a hanoi animation as a JavaScript code example,
-          while packing in as many UI/UX best practices from my past UI development experience
-          as I could fit at this small scale.
+          As I built the example, I saw I could shape it to demonstrate many
+          UI/UX best practices that I learned during 7 years of front end development
+          using JavaScript, prior to my more recent server side experience.
         </p><p>
-          Comments at the end of <strong>main.js</strong> list the specific
-          planned updates to complete the example. These comments list
-          standard UI/UX best practices I think this code could
-          demonstrate, given time to add them.
+          The past work included building JavaScript UIs and more than one
+           UI generation framework that output HTML and JavaScript
+        </p>
+      </td>
+    </tr>
+    <tr id="row_root" class="tr_expand">
+      <td class="td_expand">
+        <p class="accordion">
+          <span id="more_*" class="link_enabled" href="#" onclick="window.toggleExpand('*', true);">
+            &#x25BC;
+          </span>
+          <span id="less_*" class="link_disabled" href="#" onclick="window.toggleExpand('*', false);">
+            &#x25B2;
+          </span>
+        </p>
+      </td>
+      <td class="td_expand">
+        <p class="p_summary">
+          <a id="code_hanoi" href="https://github.com/susankorgen/cygnet-software">GitHub</a>
+        </p>
+      </td>
+      <td class="td_expand">
+        <p class="accordion">
+          <span id="more_root" class="link_disabled" href="#" onclick="window.toggleExpand('row_root', true);">
+            &#x25BC;
+          </span>
+          <span id="less_root" class="link_enabled" href="#" onclick="window.toggleExpand('row_root', false);">
+            &#x25B2;
+          </span>
+        </p>
+      </td>
+      <td class="td_expand">
+        <p id="summary_root" class="p_summary">
+          Expand and contract table rows.
+        </p>
+      </td>
+      <td class="td_expand">
+        <p class="p_summary">
+          Done.
+        </p>
+      </td>
+      <td class="td_expand">
+        <p class="p_summary">
+          1&nbsp;day.
+        </p>
+      </td>
+      <td class="td_expand">
+        <p class="p_summary">
+          Manipulated the DOM using JavaScript.
+          The real work was choosing a user experience.
+        </p>
+        <p>
+          Why was this code so much quicker than <strong>hanoi</strong>?
+          It leverages language-agnostic skills I use daily.
+          These skills transferred smoothly.
+        </p>
+        <p>
+          Since 2016, in back end development, I have worked with
+          structured data formats, transforming and storing
+          data in a proprietary
+          database that offers both object-oriented and SQL projections.
+        </p>
+        <p>
+          When you spend all your time traversing hierarchical data
+          structures and finding optimal
+          paths to the data needed, the thinking is similar, regardless of
+          language or output format: JSON, XML, classes, SQL result sets,
+          FHIR, C-CDA, or other.
         </p>
       </td>
     </tr>
