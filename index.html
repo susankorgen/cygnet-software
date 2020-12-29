@@ -16,29 +16,46 @@
     I did not set up language localization for text content here; please see
     my Towers of Hanoi code example index.html and js for that UI best practice.
   -->
-  <table id="intro" border=0 style="margin-bottom:20px;">
-    <tr>
-      <td>
-        <img width="170" height="170" src="images/CloudSkyBranches2020Circle.png"
+  <table id="intro" border=0>
+    <tr id="row_intro">
+      <td class="div-LeftPanel">
+        <img width="240" height="240" src="images/CloudSkyBranches2020Circle.png"
             alt="Blue sky, clouds, patterns of tree branches: a sky on a bright winter day."
             />
       </td>
-      <td>
-        <p>
-          Code examples by Susan Korgen.
+      <td class="td_expand">
+        <p class="summary">
+          <strong>Code Examples</strong> by Susan Korgen.
         </p>
-        <p>
-          My work has been proprietary, using a proprietary language, for 10+ years.
-          I started this portfolio to show code of my own, and to
-          exercise engineering skills and practices using more commonly known languages.
-        </p><p>
-          Below are links to the code and demos.
-          For project background, click in the <strong>Details</strong> column.
+        <p class="summary">
+          My work has been proprietary, using a proprietary language, for 11+ years.
+          My résumé (elsewhere) describes this proprietary work, which I am happy to discuss.
+        </p>
+        <p class="summary">
+          I started this portfolio to show code of my own that
+          exercises my existing engineering skills and practices,
+          while using common known languages, so that others can read my
+          work.
+        </p>
+        <p class="summary">
+          Below are links to code and demos.
+          For project descriptions, click in the <strong>Details</strong> column.
+        </p>
+        <p class="accordion">
+          <span id="more_wrapup" class="link_disabled" href="#"
+                onclick="window.toggleExpand('wrapup', true);">
+                More...
+          </span>
+          <span id="less_wrapup" class="link_enabled" href="#"
+              onclick="window.toggleExpand('wrapup', false);"
+              style="display:none;">
+              ...Less
+          </span>
         </p>
       </td>
     </tr>
   </table>
-  <table id="examples" border=1 style="border-collapse: collapse;border:1px solid lightgray;" >
+  <table id="examples" border=1 style="margin-top:30px;border-collapse: collapse;border:1px solid lightgray;" >
     <tr id="table_header">
       <th>Click to Demo</th>
       <th>Click for Code</th>
@@ -58,40 +75,41 @@
         <p class="p_summary">
           <a id="code_hanoi" href="https://github.com/susankorgen/cygnet-software/tree/master/hanoi">GitHub</a>
         </p>
-        <td class="td_expand">
-          <p class="accordion">
-            <span id="more_hanoi" class="link_enabled" href="#" onclick="window.toggleExpand('row_hanoi', true);">
-              &#x25BC;
-            </span>
-            <span id="less_hanoi" class="link_disabled" href="#" onclick="window.toggleExpand('row_hanoi', false);">
-              &#x25B2;
-            </span>
-          </p>
-        </td>
+      </td>
+      <td class="td_expand">
+        <p class="accordion">
+          <span id="more_hanoi" class="link_enabled" href="#" onclick="window.toggleExpand('row_hanoi', true);">
+            More...
+          </span>
+          <span id="less_hanoi" class="link_disabled" href="#" onclick="window.toggleExpand('row_hanoi', false);">
+            ...Less
+          </span>
+        </p>
+      </td>
       </td>
         <td class="td_expand">
         <p class="p_summary">
           Animate the classic recursion problem using pure, raw JavaScript, HTML, CSS, and SVG.
         </p>
-        <p>
+        <p class="p_detail">
           The SVG graphics are not downloaded images; they are dynamically generated as SVG XML content when this code runs.
         </p>
-        <p>
+        <p class="p_detail">
           Computed data for each tower height the user chooses (5, 6, ... , 12, 13) is retained during the session in case of a repeat demo.
         </p>
-        <p>
+        <p class="p_detail">
           The code showcases UX and UI development best practices that are independent of coding language and technology stack.
         </p>
       </td>
       <td class="td_expand">
         <p class="p_summary">
           A solid first implementation.
-        </p><p>
+        </p><p class="p_detail">
           Graphically illustrates the cost of order 2<sup>n</sup> computation.
-        </p><p>
+        </p><p class="p_detail">
           Supports a user language choice of English or French and
           easy translation for other user languages.
-        </p><p>
+        </p><p class="p_detail">
           Comments at the end of <strong>hanoi/main.js</strong> list the specific
           planned updates: UI/UX coding best practices
           that I have not added to the example yet.
@@ -104,24 +122,24 @@
       </td>
       <td class="td_expand">
         <p class="p_summary">
-          A return to JavaScript and front end development
+          A return to JavaScript and front end development work
           after 4 years using a proprietary,
           object-oriented database language in back end development.
           Decided to also use all new tools (Atom, GitHub, GitHub desktop)
           as a change from the proprietary IDE.
-        </p><p>
+        </p><p class="p_detail">
           8 days for this example began with 2 days of
           <em>JavaScript: The Good Parts</em> by Douglas Crockford.
           Page 34 mentions the hanoi problem and provides a 3-line loop.
-        </p><p>
+        </p><p class="p_detail">
           Recursion can be challenging to visualize.
           I was inspired to build my <strong>hanoi</strong> animation
           as my first JavaScript code example.
-        </p><p>
+        </p><p class="p_detail">
           As I built the example, I saw I could shape it to demonstrate many
           UI/UX best practices that I learned during 7 years of front end development
           using JavaScript, prior to my more recent server side experience.
-        </p><p>
+        </p><p class="p_detail">
           The past work included building JavaScript UIs and more than one
            UI generation framework that output HTML and JavaScript
         </p>
@@ -130,26 +148,26 @@
     <tr id="row_root" class="tr_expand">
       <td class="td_expand">
         <p class="accordion">
-          <span id="more_*" class="link_enabled" href="#" onclick="window.toggleExpand('*', true);">
-            &#x25BC;
+          <span id="more_*" class="link_disabled" href="#" onclick="window.toggleExpand('*', true);">
+            More...
           </span>
-          <span id="less_*" class="link_disabled" href="#" onclick="window.toggleExpand('*', false);">
-            &#x25B2;
+          <span id="less_*" class="link_enabled" href="#" onclick="window.toggleExpand('*', false);">
+            ...Less
           </span>
         </p>
       </td>
       <td class="td_expand">
         <p class="p_summary">
-          <a id="code_hanoi" href="https://github.com/susankorgen/cygnet-software">GitHub</a>
+          <a id="code_root" href="https://github.com/susankorgen/cygnet-software">GitHub</a>
         </p>
       </td>
       <td class="td_expand">
         <p class="accordion">
           <span id="more_root" class="link_disabled" href="#" onclick="window.toggleExpand('row_root', true);">
-            &#x25BC;
+            More...
           </span>
           <span id="less_root" class="link_enabled" href="#" onclick="window.toggleExpand('row_root', false);">
-            &#x25B2;
+            ...Less
           </span>
         </p>
       </td>
@@ -165,26 +183,26 @@
       </td>
       <td class="td_expand">
         <p class="p_summary">
-          1&nbsp;day.
+          2&nbsp;days.
         </p>
       </td>
       <td class="td_expand">
         <p class="p_summary">
-          Manipulated the DOM using JavaScript.
-          The real work was choosing a user experience.
+          Half a day: Manipulated the DOM using JavaScript.<br/>
+          1.5 days: Choosing and improving the user experience.
         </p>
-        <p>
-          Why was this code so much quicker than <strong>hanoi</strong>?
+        <p class="p_detail">
+          Why was this code so much quicker to complete than <strong>hanoi</strong>?
           It leverages language-agnostic skills I use daily.
           These skills transferred smoothly.
         </p>
-        <p>
+        <p class="p_detail">
           Since 2016, in back end development, I have worked with
           structured data formats, transforming and storing
           data in a proprietary
           database that offers both object-oriented and SQL projections.
         </p>
-        <p>
+        <p class="p_detail">
           When you spend all your time traversing hierarchical data
           structures and finding optimal
           paths to the data needed, the thinking is similar, regardless of
@@ -192,6 +210,36 @@
           FHIR, C-CDA, or other.
         </p>
       </td>
+    </tr>
+  </table>
+  <table id="wrapup" border=0 style="display:none;margin-top:25px;">
+    <tr>
+      <td width="70%" style="vertical-align:top;">
+      <p>
+        <strong>Objectives</strong> for the portfolio work are to:
+      </p>
+      <ul>
+        <li>Design and build all projects myself. They must be fun and express my interests. &#x2192;</li>
+        <li>Be guided by my professional experience and capacity to learn, plus the market.</li>
+        <li>Learn: Start with all IDEs, languages, tools, and libraries I do <em>not</em> know. </li>
+        <li>Apply best practices I know that transcend specific "tech stacks". Show how they transfer.</li>
+        <li>Be transparent: Commit updates frequently, adding incremental slices of value, with notes.</li>
+        <li>Create simplicity, utility, and beauty with code: In a cave! With a box of scraps! Show how. </li>
+      </ul>
+      <!--
+      <p class="p_tiny">Actor Jeff Bridges in <em>Iron Man</em> &reg;2008 Marvel Universe "Tony Stark was able to build this in a cave! With a box of scraps!"</p>
+      -->
+    </td>
+    <td>
+      <img width="285" height="190" src="images/berry2020V2.jpg"
+          alt="Cartoon: cute animal with big ears, asleep, happily dreaming of an equation."
+          />
+      <p class="accordion" style="text-align:right;">
+        <a class="p_detail" href="#intro">
+          ...Back to Top
+        </a>
+      </p>
+    </td>
     </tr>
   </table>
 </div>
