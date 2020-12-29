@@ -13,18 +13,32 @@
 
 function toggleExpand(row, show) {
   show = (typeof show === "undefined") ? true : show;
+  let tr;
   if (row === "*") {
     let trList = self.document.getElementsByClassName("tr_expand");
     if (trList) {
       for (let i = 0; i < trList.length; i++) {
-        toggleExpandRow(trList[i], show);
+        tr = trList[i];
+        toggleExpandRow(tr, show);
+        let rowName = tr.id.slice(4); // after row_
+        updateExpandLink(rowName, show);
       }
     }
+    updateExpandLink("*", show);
+  }
+  if ((row === "*") || (row === "wrapup")) {
+    tr = self.document.getElementById("row_intro");
+    toggleExpandRow(tr, show);
+    tr = self.document.getElementById("wrapup");
+    tr.style.display = show ? "block" : "none";
+    updateExpandLink("wrapup", show);
   }
   else {
     if (row.slice(0,4) === "row_") {
-      let tr = self.document.getElementById(row);
+      tr = self.document.getElementById(row);
       toggleExpandRow(tr, show);
+      let rowName = tr.id.slice(4); // after row_
+      updateExpandLink(rowName, show);
     }
   }
 
@@ -41,31 +55,26 @@ function toggleExpand(row, show) {
               tdNode.style.display = "block";
             }
             else {
-              if (!tdNode.className.length) {
+              if ((tdNode.className === "p_detail") || (tdNode.className === "p_intro")) {
                 tdNode.style.display = "none";
               }
             }
           }
         }
       }
-      let rowName = tr.id.slice(4); // after row_
-      updateExpandLink(rowName, show);
-      if (rowName === "root") {
-        updateExpandLink("*", show);
-      }
-
-      function updateExpandLink(rowName, show) {
-        if (show) {
-          aEnable = self.document.getElementById("less_" + rowName);
-          aDisable = self.document.getElementById("more_" + rowName);
-        }
-        else {
-          aEnable = self.document.getElementById("more_" + rowName);
-          aDisable = self.document.getElementById("less_" + rowName);
-        }
-        aEnable.className = "link_enabled";
-        aDisable.className = "link_disabled";
-      }
     }
+  };
+
+  function updateExpandLink(rowName, show) {
+    if (show) {
+      aEnable = self.document.getElementById("less_" + rowName);
+      aDisable = self.document.getElementById("more_" + rowName);
+    }
+    else {
+      aEnable = self.document.getElementById("more_" + rowName);
+      aDisable = self.document.getElementById("less_" + rowName);
+    }
+    aEnable.style.display = "block";
+    aDisable.style.display = "none";
   }
 };
