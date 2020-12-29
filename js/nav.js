@@ -24,14 +24,6 @@ function toggleExpand(row, show) {
         updateExpandLink(rowName, show);
       }
     }
-    updateExpandLink("*", show);
-  }
-  if ((row === "*") || (row === "wrapup")) {
-    tr = self.document.getElementById("row_intro");
-    toggleExpandRow(tr, show);
-    tr = self.document.getElementById("wrapup");
-    tr.style.display = show ? "block" : "none";
-    updateExpandLink("wrapup", show);
   }
   else {
     if (row.slice(0,4) === "row_") {
