@@ -163,6 +163,6 @@ tr.zebraOff td {
   display:none;
 }
 
-#div-ContentView table tr td p.p_tiny {
+#div-ContentView p.p_tiny {
   font-size: 8pt;
 }
