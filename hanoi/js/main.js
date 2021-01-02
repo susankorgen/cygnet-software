@@ -9,10 +9,13 @@
 // (1) the body onload event (displayId is undefined in this case), or
 // (2) user choosing a type of demo (graphics, etc.) indicated by displayId.
 function displayDemo(displayId) {
+  clearAllTimers();
   if (!displayId) { // prepare displays with correct message text
     if (typeof this.displaySet === "undefined") {
-      this.displaySet = {};
-      this.displayPost = [];
+      this.displaySet = {}; // display data for the animation of all disc moves
+      this.displayPost = []; // display data for the 3 towers during animation
+      this.moveCount = []; // how many moves to move a tower of n discs 1 time
+      this.progressCount = []; // after how many moves is disc n completely at rest?
     }
     initDemo();
     return;
@@ -51,10 +54,20 @@ function displayDemo(displayId) {
     displayPost = this.displayPost;
   }
   else  { // build data and store it
+
+    // towers and discs
     var displayMatrix = [];
     displayMatrix.push(initData(towerSize));
     hanoi(towerSize, "0", "1", "2"); // the posts are in alphanumeric order
     this.displaySet[towerString] = JSON.parse(JSON.stringify(displayMatrix));
+
+    // at which move does each disc reach the end
+    var atRest = Array(towerSize + 1).fill(0);
+    atRest[towerSize] = Math.pow(2, towerSize - 1);
+    for (let j = (towerSize - 1); j > 0; j--) {
+      atRest[j] = atRest[j + 1] + Math.pow(2, j - 1);
+    }
+    this.progressCount[towerString] = atRest;
   }
 
   // display the data for this towerSize using the selected display type
@@ -65,9 +78,11 @@ function displayDemo(displayId) {
   // initializes the HTML elements with correct size, message text, etc.
   function initDemo() {
     adjustSizes();
-    initValues();
+    initFieldValues();
+    initProgressValues();
     initMessages();
     getMessages();
+    styleDemoPrompt(true);
   };
 
   // Provide a first member of the display Set for a towerSize for displayDemo()
@@ -79,6 +94,7 @@ function displayDemo(displayId) {
     for (var i = 1; i < displaySize; i++) {
       postStart[i] = i;
     }
+
     // set up the first state entry for display methods
     var displayCurrent = {};
     displayCurrent["0"] = postStart;
@@ -176,20 +192,29 @@ function displayDemo(displayId) {
   // Decide which content should display on the page after a button is selected.
   function toggleDisplay(chosenId, displayMatrix, displayPost) {
     var div = self.document.getElementById(chosenId);
-    if (div && displayMatrix) {
-      if (displayId === chosenId) {
-        if (chosenId === "output_svg") {
-          div.innerHTML = ""
+    var divPro = self.document.getElementById("output_pro");
+    if (div && divPro && displayMatrix) {
+      if (chosenId === "output_svg") {
+        div.innerHTML = ""
+        divPro.innerHTML = ""
+        if (displayId === chosenId) {
           div.style.display = "block";
+          divPro.style.display = "block";
           outputDisplay(chosenId, displayMatrix, displayPost);
         }
         else {
-          div.innerHTML = outputDisplay(chosenId, displayMatrix, displayPost);
-          div.style.display = "block";
+          div.style.display = "none";
+          divPro.style.display = "none";
         }
       }
       else {
-        div.style.display = "none";
+        if (displayId === chosenId) {
+          div.innerHTML = outputDisplay(chosenId, displayMatrix, displayPost);
+          div.style.display = "block";
+        }
+        else {
+          div.style.display = "none";
+        }
       }
     }
   };
@@ -211,10 +236,7 @@ function resetLocale(value) {
 
 // TO DO: paging of multiline displays; different paging type for moves vs. data
 // TO DO: favicon
-// TO DO: animated progress bar with milestones of each disc spaced appropriately
-// TO DO: track how long full animation takes; list time at the end with "Done!"
-// TO DO: adjustSizes() upon window resize and when first displaying the page
-// TO DO: clean up SVG generation to avoid unnecessary duplication and effort
+// TO DO: progress bar has milestones of each disc spaced appropriately
 // TO DO: pause/resume animation in addition to reset (which stops cold)
 // TO DO: stop animation (if displaying) if the user starts modifying inputs
 // TO DO: style input field/buttons visually; currently using browser defaults.

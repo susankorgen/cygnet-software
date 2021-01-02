@@ -21,10 +21,18 @@ function getFontHorizontalFactor() {
   return getFontSize() * 0.75; 
 };
 
-function initValues() {
+function initFieldValues() {
   let field = self.document.getElementById("input_size");
   if (field) {
     field.value = getTowerDefaultSize();
+  }
+};
+
+function initProgressValues() {
+  let postSize = getTowerMaxSize() + 1;
+  this.moveCount = [];
+  for (let i = 0; i < postSize; i++) {
+    this.moveCount.push(Math.pow(2, i) - 1);
   }
 };
 
