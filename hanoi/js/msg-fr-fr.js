@@ -19,6 +19,9 @@ var msgFrFr = {
       case "_DiscTower":
         textLine = "La tour";
         break;
+      case "_Done":
+        textLine = "Terminé!";
+        break;
       case "_MoveCount":
         if (values && (values.length === 2)) {
           textLine = " C&rsquo;est le mouvement " + values[0] + " de " + values [1] + ".";
@@ -49,6 +52,9 @@ var msgFrFr = {
           textLine += " vers " + values[2] + ".";
         }
         break;
+      case "_TimeRanOut":
+        textLine = "Le temps est écoulé! Pendant la démo, avez-vous visité d'autres sites? Changer la taille de la fenêtre?";
+        break;
       case "innerHTML_link_en_us":
         textLine = "English";
         break;
@@ -66,7 +72,7 @@ var msgFrFr = {
         textLine = "Changer de langue?";
         break;
       case "innerHTML_prompt_output":
-        textLine = "Cliquez pour démarrer la démo:";
+        textLine = "Cliquez pour démarrer la démo";
         break;
       case "innerHTML_prompt_reset":
         textLine = "Autres options?";

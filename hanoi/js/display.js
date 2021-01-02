@@ -3,6 +3,7 @@
 
 // Based on type of display requested, output the visuals to the page.
 function outputDisplay(displayId, displayMatrix, displayPost) {
+  clearAllTimers();
   if (!isDisplayDataValid(displayMatrix, displayPost)) {
     return outputElement("p", getMessageText("_NoDisplayData"));
   }
@@ -92,59 +93,92 @@ function outputDisplay(displayId, displayMatrix, displayPost) {
   // setInterval is adapted from https://javascript.info/js-animation
   // - additions and improvements are:
   // (1) calling clearInterval at start, in case button is clicked during animation
-  // (2) TO DO: a progress timer updating at faster (smoother) time interval
+  // (2) multiple independent timers: each updates at different time interval
+  // (3) purpose of a faster progress bar timer is to give smooth motion, but:
+  // (4) if total moves is huge, avoid exhaustive updates on progress; scale down
   function outputSVG(displayId, displayMatrix, displayPost) {
+    let divTowers = self.document.getElementById(displayId);
+    let divProgress = self.document.getElementById("output_pro");
+    if (!divTowers || !divProgress) {
+     return;
+    }
     styleDemoPrompt();
-    if (this.timer) {
-      clearInterval(this.timer);
-    }
-    var div = self.document.getElementById(displayId);
-    if (!div) {
-      return;
-    }
-    var displayLength = displayMatrix.length;
+
+    // dimensions
     var postSize = displayMatrix[0]["0"].length;
     var towerSize = postSize - 1;
-    var interval = ((getTowerMaxSize() - towerSize + 1) * 70);
-    var unit = parseInt(window.innerWidth / (9 * (postSize + 1)));
-    var spacer = unit;
-    var left = 0;
-    var snapshot = -1;
-    var cx = {};
-    cx["0"] = left + spacer + towerSize * unit;
-    cx["1"] = cx["0"] + spacer + (((2 * towerSize) + 1) * unit);
-    cx["2"] = cx["1"] + spacer + (((2 * towerSize) + 1) * unit);
+    var moveCount = this.moveCount[towerSize];
+    var displayLength = moveCount + 1;
+
+    // time
+    var factorProgress = (towerSize > 12) ? 1 : (towerSize > 10) ? 2 : (towerSize > 8) ? 3 : (towerSize > 6) ? 4 : 6;
+    var moveFactor = moveCount * factorProgress;
+    var intervalTowers = ((getTowerMaxSize() - towerSize + 1) * 60);
+    var intervalProgress = intervalTowers / factorProgress;
+    var totalTimeLimit = 2 * intervalTowers * displayLength; // tons of extra
     var startTime = Date.now();
-    drawSnapshot(div, displayMatrix, displayPost, ++snapshot, cx, postSize, unit);
-    this.timer = setInterval(function() {
+    var done = false;
+
+    // start
+    var snapshot = 0;
+    drawSnapshot(divTowers, displayMatrix, displayPost, snapshot, postSize);
+    var factor = -1;
+    drawProgress(divProgress, snapshot, towerSize, factorProgress, factor);
+
+    // towers and discs (run slower for fewer discs, faster for more discs)
+    this.timerTowers = setInterval(function() {
       let timePassed = Date.now() - startTime;
-      if ((snapshot >= displayLength) || (timePassed > (interval * (displayLength + 20)))) {
-        clearInterval(this.timer);
+      if ((snapshot >= moveCount) || (timePassed > totalTimeLimit)) {
+        clearInterval(this.timerTowers);
+        done = true;
         return;
       }
-      drawSnapshot(div, displayMatrix, displayPost, ++snapshot, cx, postSize, unit);
-    }, interval);
+      drawSnapshot(divTowers, displayMatrix, displayPost, ++snapshot, postSize);
+    }, intervalTowers);
+
+    // progress bar (may run 2 or more times as fast as drawSnapshot, or same interval)
+    this.timerProgress = setInterval(function() {
+      let timePassed = Date.now() - startTime;
+      if (done || (snapshot >= moveCount) || (factor >= moveFactor) || (timePassed > totalTimeLimit)) {
+        clearInterval(this.timerProgress);
+        if (timePassed > totalTimeLimit) {
+          divProgress.innerHTML += outputElement("p", getMessageText("_TimeRanOut"));
+        }
+        else {
+          drawProgress(divProgress, snapshot, towerSize, factorProgress, moveFactor);
+          divProgress.innerHTML += outputElement("p", getMessageText("_Done"));
+        }
+        return;
+      }
+      drawProgress(divProgress, snapshot, towerSize, factorProgress, ++factor);
+    }, intervalProgress);
   };
 
-  function drawSnapshot(div, displayMatrix, displayPost, snapshot, cx, postSize, unit) {
-    var displayLength = displayMatrix.length;
-    if (snapshot >= displayLength) {
-      return;
-    }
+  function drawSnapshot(div, displayMatrix, displayPost, snapshot, postSize) {
     var displayCurrent = displayMatrix[snapshot];
     var x, y, w, h, top, left;
     var heightFactorTower = 1.7;
+    var towerSize = postSize - 1;
+    var moveCount = this.moveCount[towerSize];
+    var displayLength = moveCount + 1;
+    let svgW = window.innerWidth - getLeftPanelWidth();
+    let unit = parseInt(svgW / (7 * (postSize + 1)));
     var row = parseInt(unit * heightFactorTower);
     var nudge = parseInt(unit / 2);
     var towerSize = postSize - 1;
     var maxWidth = parseInt(((2 * towerSize) + 1) * unit);
     var heightFactorBase = parseInt(towerSize / 2.5);
-    var fullText = "";
+    var spacer = 2 * unit;
+    var left = 0;
+    var cx = {};
+    cx["0"] = left + spacer + towerSize * unit;
+    cx["1"] = cx["0"] + spacer + (((2 * towerSize) + 1) * unit);
+    cx["2"] = cx["1"] + spacer + (((2 * towerSize) + 1) * unit);
 
-    // SVG start
-    let svgW = window.innerWidth - getTowerMaxSize();
-    let svgH = parseInt((towerSize + 2) * row * 2) // drawing + legend
-    fullText += svgStart(svgW, svgH);
+    // SVG Towers start
+    var fullText = "";
+    let svgH = parseInt((towerSize + 2) * row * 2); // drawing + legend
+    fullText += svgStart("svg_output_svg", svgW, svgH);
 
     // towers and discs
     let inMotion = "#D9534F";
@@ -187,9 +221,9 @@ function outputDisplay(displayId, displayMatrix, displayPost) {
     y = top + (hBase / 2) + nudge;
     x = cx["0"] + nudge;
     fullText += svgLabel(x, y, "black", "2", displayPost["0"], "middle");
-    x += (maxWidth + unit);
+    x += (maxWidth + spacer);
     fullText += svgLabel(x, y, "black", "2", displayPost["1"], "middle");
-    x += (maxWidth + unit);
+    x += (maxWidth + spacer);
     fullText += svgLabel(x, y, "black", "2", displayPost["2"], "middle");
     // legend
     y = top + hBase + (2 * unit);
@@ -210,27 +244,64 @@ function outputDisplay(displayId, displayMatrix, displayPost) {
     message = getMessageText("_DiscInMotion");
     fullText += svgLabel(x, y, "#090909", "1", message, "left");
 
-    // SVG end
+    // SVG Towers end
     fullText += '</svg>';
 
-    let lengthString = (displayLength - 1).toString();
+    let lengthString = this.moveCount[towerSize].toString();
     fullText += outputElement("p", getMessageText("_MoveExplained", [towerSize, lengthString]));
-    if (snapshot > 0) {
+    if (snapshot === 0) {
+      fullText += outputElement("p", "&nbsp;");
+    }
+    else {
       fullText += outputElement("p", getMessageText("_MoveCount", [snapshot, lengthString]));
     }
+    div.innerHTML = fullText;
+    return;
+  };
+
+  function drawProgress(div, snapshot, towerSize, factorProgress, factor) {
+    let moveCount = this.moveCount[towerSize];
+    let svg, id;
+    let lighted = "green";
+    let dimmed = "whitesmoke";
+    let fullText = "";
+
+    // SVG Progress start
+    let barHeight = 10;
+    let svgW = window.innerWidth - getLeftPanelWidth();
+    let unit = (svgW - 80) / (moveCount * factorProgress);
+    let svgH = parseInt(barHeight * 3);
+    fullText += svgStart("svg_output_pro", svgW, svgH);
+
+    let x = 0;
+    let y = 0;
+    let f = dimmed;
+    let w = unit * moveCount * factorProgress;
+    let h = barHeight;
+    id = "bg_" + snapshot.toString() + "_" + factor.toString();
+    fullText += svgProgress(id, x, y, w, h, f);
+    if (factor > 0) {
+      f = lighted;
+      w = factor * unit;
+      id = "id_" + snapshot.toString() + "_" + factor.toString();
+      fullText += svgProgress(id, x, y, w, h, f);
+    }
+
+    // SVG Progress end
+    fullText += '</svg>';
 
     div.innerHTML = fullText;
     return;
   };
 
-  function svgStart(w, h) {
-    let svgLine = '<svg';
+  function svgStart(id, w, h) {
+    let svgLine = '<svg id="' + id + '"';
     svgLine += ' width="' + w + '" height="' + h + '"';
     svgLine += ' viewBox="0 0 ' + w + ' ' + h + '"';
     svgLine += ' style="background-color:white;border-bottom:1px solid lightgray;"';
     svgLine += '>';
     return svgLine;
-  }
+  };
 
   function svgRect(x, y, w, h, f, rx, ry) {
     let svgLine = '<rect';
@@ -261,6 +332,21 @@ function outputDisplay(displayId, displayMatrix, displayPost) {
     let svgLine = '<circle';
     svgLine += ' cx="' + cx + '" cy="' + cy + '" r="' + r + '"';
     svgLine += ' style="stroke:' + color + ';fill:' + color + ';"';
+    svgLine += '/>';
+    return svgLine;
+  };
+
+  function svgProgress(id, x, y, w, h, f, rx, ry) {
+    let svgLine = '<rect id="' + id + '"';
+    svgLine += ' x="' + x + '" y="' + y + '"';
+    svgLine += ' width="' + w + '" height="' + h + '"';
+    svgLine += ' style="fill:' + f + ';stroke:' + f + ';stroke-width:2;"';
+    if (rx && rx.length) {
+      svgLine += ' rx="' + rx + '"';
+    }
+    if (ry && rx.length) {
+      svgLine += ' ry="' + ry + '"';
+    }
     svgLine += '/>';
     return svgLine;
   };
@@ -304,6 +390,15 @@ function toggleExplain(localeOnly) {
       button.value = hidden ? hideText : showText;
       field.style.display = hidden ? "block" : "none";
     }
+  }
+};
+
+function clearAllTimers() {
+  if (this.timerTowers) {
+    clearInterval(this.timerTowers);
+  }
+  if (this.timerProgress) {
+    clearInterval(this.timerProgress);
   }
 };
 

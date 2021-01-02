@@ -19,6 +19,9 @@ var msgEnUs = {
       case "_DiscTower":
         textLine = "Tower";
         break;
+      case "_Done":
+        textLine = "All done!";
+        break;
       case "_MoveCount":
         if (values && (values.length === 2)) {
           textLine = " This is move " + values[0] + " of " + values [1] + ".";
@@ -49,6 +52,9 @@ var msgEnUs = {
           textLine += " to " + values[2] + ".";
         }
         break;
+      case "_TimeRanOut":
+        textLine = "Time is up! During the demo, did you visit other sites? Change window size?";
+        break;
       case "innerHTML_link_en_us":
         textLine = "English";
         break;
@@ -66,7 +72,7 @@ var msgEnUs = {
         textLine = "Change language?";
         break;
       case "innerHTML_prompt_output":
-        textLine = "Click to start the demo:";
+        textLine = "Click to start the demo";
         break;
       case "innerHTML_prompt_reset":
         textLine = "Other options?";
