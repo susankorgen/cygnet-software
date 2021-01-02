@@ -28,8 +28,8 @@
           <strong>Code Examples</strong> by Susan Korgen.
         </p>
         <p class="summary">
-          My work has been proprietary, using a proprietary language, for 11+ years.
-          My <a href="pdf/SKorgenResume.pdf">résumé</a> describes this proprietary work.
+          for 11+ years, my work has been proprietary, using a proprietary language.
+          My <a href="pdf/SKorgenResume.pdf">résumé (link)</a> describes this proprietary work.
         </p>
         <p class="summary">
           I started this portfolio to show code of my own that
@@ -39,7 +39,9 @@
         </p>
         <p class="summary">
           Below are links to code and demos.
-          For project descriptions, click in the <strong>Details</strong> column.
+          For detailed project descriptions, click
+          <strong style="color:rgb(200,200,200);font-size:13pt;">More...</strong>
+          in the <strong>Dev Time</strong> column.
           Guidelines for all projects follow the table.
         </p>
         </td>
@@ -49,7 +51,6 @@
     <tr id="table_header">
       <th>Click to Demo</th>
       <th>Click for Code</th>
-      <th>Click for Details</th>
       <th>Features</th>
       <th>Status Now</th>
       <th>Dev Time</th>
@@ -64,16 +65,6 @@
       <td class="td_expand">
         <p class="p_summary">
           <a id="code_hanoi" href="https://github.com/susankorgen/cygnet-software/tree/master/hanoi">GitHub</a>
-        </p>
-      </td>
-      <td class="td_expand">
-        <p class="accordion">
-          <span id="more_hanoi" class="link_enabled" href="#" onclick="window.toggleExpand('row_hanoi', true);">
-            More...
-          </span>
-          <span id="less_hanoi" class="link_disabled" href="#" onclick="window.toggleExpand('row_hanoi', false);">
-            ...Less
-          </span>
         </p>
       </td>
       </td>
@@ -112,7 +103,15 @@
         <p class="p_summary">
           10&nbsp;days.
         </p>
-      </td>
+        <p class="accordion">
+          <span id="more_hanoi" class="link_enabled" onclick="window.toggleExpand('row_hanoi', true);">
+            More...
+          </span>
+          <span id="less_hanoi" class="link_disabled" onclick="window.toggleExpand('row_hanoi', false);">
+            ...Less
+          </span>
+        </p>
+    </td>
       <td class="td_expand">
         <p class="p_summary">
           A return to JavaScript and front end development work
@@ -148,16 +147,6 @@
         </p>
       </td>
       <td class="td_expand">
-        <p class="accordion">
-          <span id="more_root" class="link_disabled" href="#" onclick="window.toggleExpand('row_root', true);">
-            More...
-          </span>
-          <span id="less_root" class="link_enabled" href="#" onclick="window.toggleExpand('row_root', false);">
-            ...Less
-          </span>
-        </p>
-      </td>
-      <td class="td_expand">
         <p id="summary_root" class="p_summary">
           Expand and contract table rows on this page.
         </p>
@@ -170,6 +159,14 @@
       <td class="td_expand">
         <p class="p_summary">
           2&nbsp;days.
+        </p>
+        <p class="accordion">
+          <span id="more_root" class="link_disabled" onclick="window.toggleExpand('row_root', true);">
+            More...
+          </span>
+          <span id="less_root" class="link_enabled" onclick="window.toggleExpand('row_root', false);">
+            ...Less
+          </span>
         </p>
       </td>
       <td class="td_expand">
