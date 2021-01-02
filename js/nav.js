@@ -13,14 +13,14 @@
 
 function toggleExpand(row, show) {
   show = (typeof show === "undefined") ? true : show;
-  let tr;
+  let tr, rowName;
   if (row === "*") {
     let trList = self.document.getElementsByClassName("tr_expand");
     if (trList) {
       for (let i = 0; i < trList.length; i++) {
         tr = trList[i];
         toggleExpandRow(tr, show);
-        let rowName = tr.id.slice(4); // after row_
+        rowName = tr.id.slice(4); // after row_
         updateExpandLink(rowName, show);
       }
     }
@@ -29,7 +29,7 @@ function toggleExpand(row, show) {
     if (row.slice(0,4) === "row_") {
       tr = self.document.getElementById(row);
       toggleExpandRow(tr, show);
-      let rowName = tr.id.slice(4); // after row_
+      rowName = tr.id.slice(4); // after row_
       updateExpandLink(rowName, show);
     }
   }
@@ -58,6 +58,7 @@ function toggleExpand(row, show) {
   };
 
   function updateExpandLink(rowName, show) {
+    let aEnable, aDisable;
     if (show) {
       aEnable = self.document.getElementById("less_" + rowName);
       aDisable = self.document.getElementById("more_" + rowName);
@@ -68,5 +69,5 @@ function toggleExpand(row, show) {
     }
     aEnable.style.display = "block";
     aDisable.style.display = "none";
-  }
+  };
 };
