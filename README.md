@@ -1,8 +1,8 @@
 # cygnet-software
 
-My work has been proprietary, using a proprietary language, for 10+ years. 
+For 11+ years, my work has been proprietary, using a proprietary language. 
 I started this portfolio to show some code of my own, and to exercise skills in more commonly understood languages.
-FOr each project, I have published a demo you can run online.
+For each project, I have published a demo you can run online.
 
 **Try the demos!** https://susankorgen.github.io/cygnet-software
 
