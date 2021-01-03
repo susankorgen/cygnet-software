@@ -77,7 +77,6 @@ function displayDemo(displayId) {
 
   // initializes the HTML elements with correct size, message text, etc.
   function initDemo() {
-    adjustSizes();
     initFieldValues();
     initProgressValues();
     initMessages();

@@ -53,7 +53,7 @@ var msgEnUs = {
         }
         break;
       case "_TimeRanOut":
-        textLine = "Time is up! During the demo, did you visit other sites? Change window size?";
+        textLine = "Time is up! During the demo, did you <br/>visit other sites? Change window size?";
         break;
       case "innerHTML_link_en_us":
         textLine = "English";
@@ -72,7 +72,7 @@ var msgEnUs = {
         textLine = "Change language?";
         break;
       case "innerHTML_prompt_output":
-        textLine = "Click to start the demo";
+        textLine = "Click to start the demo:";
         break;
       case "innerHTML_prompt_reset":
         textLine = "Other options?";
