@@ -12,6 +12,7 @@
   <script type="text/javascript" src="js/message.js" ></script>
   <script type="text/javascript" src="js/valid.js" ></script>
   <script type="text/javascript" src="js/display.js" ></script>
+  <script type="text/javascript" src="js/svg.js" ></script>
   <script type="text/javascript" src="js/msg-en-us.js" ></script>
   <script type="text/javascript" src="js/msg-fr-fr.js" ></script>
 </head>
@@ -22,6 +23,10 @@
     <tr>
       <td id="div-LeftPanel" class="div-LeftPanel">
         <h1 id="prompt_title"></h1>
+        <div id="explain">
+          <div id="prompt_doc" class="simpleIntro"></div>
+          <div id="prompt_rules" class="simpleIntro"></div>
+        </div>
         <div id="prompt_output" class="simpleIntro"></div>
         <div>
           <input id="button_svg" class="simpleButton" type="button"
@@ -65,10 +70,6 @@
           <input id="button_reset" class="simpleButton" type="button"
                  onclick="window.resetDemo();">
           </input>
-        </div>
-        <div id="explain" style="display:none;">
-          <div id="prompt_doc" class="simpleIntro"></div>
-          <div id="prompt_rules" class="simpleIntro"></div>
         </div>
     </td>
       <td class="div-RightPanel">

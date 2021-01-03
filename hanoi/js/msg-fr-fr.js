@@ -53,7 +53,7 @@ var msgFrFr = {
         }
         break;
       case "_TimeRanOut":
-        textLine = "Le temps est écoulé! Pendant la démo, avez-vous visité d'autres sites? Changer la taille de la fenêtre?";
+        textLine = "Le temps est écoulé! Pendant la démo, avez-vous <br/>visité d'autres sites? Changer la taille de la fenêtre?";
         break;
       case "innerHTML_link_en_us":
         textLine = "English";
@@ -72,7 +72,7 @@ var msgFrFr = {
         textLine = "Changer de langue?";
         break;
       case "innerHTML_prompt_output":
-        textLine = "Cliquez pour démarrer la démo";
+        textLine = "Cliquez pour démarrer la démo:";
         break;
       case "innerHTML_prompt_reset":
         textLine = "Autres options?";
@@ -93,7 +93,7 @@ var msgFrFr = {
         textLine = "Masquer les règles";
         break;
       case "value_button_explain_show":
-        textLine = "Comment ça fonctionne";
+        textLine = "Afficher les règles";
         break;
       case "value_button_reset":
         textLine = "Arrêter la démo";
