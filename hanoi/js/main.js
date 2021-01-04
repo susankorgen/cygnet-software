@@ -15,7 +15,6 @@ function displayDemo(displayId) {
       this.displaySet = {}; // display data for the animation of all disc moves
       this.displayPost = []; // display data for the 3 towers during animation
       this.moveCount = []; // how many moves to move a tower of n discs 1 time
-      this.progressCount = []; // after how many moves is disc n completely at rest?
     }
     initDemo();
     return;
@@ -54,20 +53,10 @@ function displayDemo(displayId) {
     displayPost = this.displayPost;
   }
   else  { // build data and store it
-
-    // towers and discs
     var displayMatrix = [];
     displayMatrix.push(initData(towerSize));
     hanoi(towerSize, "0", "1", "2"); // the posts are in alphanumeric order
     this.displaySet[towerString] = JSON.parse(JSON.stringify(displayMatrix));
-
-    // at which move does each disc reach the end
-    var atRest = Array(towerSize + 1).fill(0);
-    atRest[towerSize] = Math.pow(2, towerSize - 1);
-    for (let j = (towerSize - 1); j > 0; j--) {
-      atRest[j] = atRest[j + 1] + Math.pow(2, j - 1);
-    }
-    this.progressCount[towerString] = atRest;
   }
 
   // display the data for this towerSize using the selected display type

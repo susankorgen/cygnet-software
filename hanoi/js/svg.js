@@ -18,8 +18,8 @@ function outputSVG(displayId, displayMatrix, displayPost) {
   // dimensions
   var postSize = displayMatrix[0]["0"].length;
   var towerSize = postSize - 1;
-  var moveCount = this.moveCount[towerSize];
-  var displayLength = moveCount + 1;
+  var displayLength = displayMatrix.length;
+  var moveCount = displayLength - 1;
 
   // time
   var factorProgress = (towerSize > 12) ? 1 : (towerSize > 10) ? 2 : (towerSize > 8) ? 3 : (towerSize > 6) ? 5 : 7;
@@ -53,11 +53,11 @@ function outputSVG(displayId, displayMatrix, displayPost) {
     if (done || (snapshot >= moveCount) || (factor >= moveFactor) || (timePassed > totalTimeLimit)) {
       clearInterval(this.timerProgress);
       if (timePassed > totalTimeLimit) {
-        divProgress.innerHTML += outputElement("p", getMessageText("_TimeRanOut"));
+        divProgress.innerHTML += outputElement("div", getMessageText("_TimeRanOut"), "simpleIntro");
       }
       else {
         drawProgress(divProgress, snapshot, towerSize, factorProgress, moveFactor);
-        divProgress.innerHTML += outputElement("p", getMessageText("_Done"));
+        divProgress.innerHTML += outputElement("div", getMessageText("_Done"), "simpleIntro");
       }
       return;
     }
@@ -69,8 +69,8 @@ function outputSVG(displayId, displayMatrix, displayPost) {
     var x, y, w, h, top, left;
     var heightFactorTower = 1.7;
     var towerSize = postSize - 1;
-    var moveCount = this.moveCount[towerSize];
-    var displayLength = moveCount + 1;
+    var displayLength = displayMatrix.length;
+    var moveCount = displayLength - 1;
     let svgW = window.innerWidth - getLeftPanelWidth();
     let unit = parseInt(svgW / (7 * (postSize + 1)));
     var row = parseInt(unit * heightFactorTower);
@@ -157,7 +157,7 @@ function outputSVG(displayId, displayMatrix, displayPost) {
     // SVG Towers end
     fullText += '</svg>';
 
-    let lengthString = this.moveCount[towerSize].toString();
+    let lengthString = moveCount.toString();
     fullText += outputElement("div", getMessageText("_MoveExplained", [towerSize, lengthString]), "simpleIntro");
     if (snapshot === 0) {
       fullText += outputElement("div", "&nbsp;", "simpleIntro");
@@ -183,17 +183,21 @@ function outputSVG(displayId, displayMatrix, displayPost) {
     let svgH = parseInt(barHeight * 3);
     fullText += svgStart("svg_output_pro", svgW, svgH);
 
+    // background
     let x = 0;
-    let y = 0;
+    let y = 10;
     let f = dimmed;
     let w = unit * moveCount * factorProgress;
     let h = barHeight;
-    id = "bg_" + snapshot.toString() + "_" + factor.toString();
+    let suffix = "_" + snapshot.toString() + "_" + factor.toString();
+    id = "bg" + suffix;
     fullText += svgProgress(id, x, y, w, h, f);
+
+    // progress bar
     if (factor > 0) {
       f = lighted;
       w = factor * unit;
-      id = "id_" + snapshot.toString() + "_" + factor.toString();
+      id = "id" + suffix;
       fullText += svgProgress(id, x, y, w, h, f);
     }
 
