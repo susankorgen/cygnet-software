@@ -8,8 +8,10 @@
 // displayDemo() is the main method for the application, invoked by either:
 // (1) the body onload event (displayId is undefined in this case), or
 // (2) user choosing a type of demo (graphics, etc.) indicated by displayId.
-function displayDemo(displayId) {
+function displayDemo(displayId, displayPage) {
   clearAllTimers();
+  displayPage = (typeof displayPage === "undefined") ? 0 : displayPage;
+  this.displayPage = displayPage;
   if (!displayId) { // prepare displays with correct message text
     if (typeof this.displaySet === "undefined") {
       this.displaySet = {}; // display data for the animation of all disc moves
@@ -39,10 +41,11 @@ function displayDemo(displayId) {
       return;
     }
   }
+  this.towerSize = towerSize;
   this.displayPost = [].concat(post);
 
   // highlight the user selected button before taking time for data
-  var displays = ["text", "data", "svg", "reset", "more"];
+  var displays = ["text", "data", "svg", "reset"];
   for (let display of displays) {
     toggleDisplayButton("button_" + display);
   }
@@ -181,14 +184,16 @@ function displayDemo(displayId) {
   function toggleDisplay(chosenId, displayMatrix, displayPost) {
     var div = self.document.getElementById(chosenId);
     var divPro = self.document.getElementById("output_pro");
-    if (div && divPro && displayMatrix) {
+    var divPager = self.document.getElementById("output_pager");
+    if (div && divPro && divPager && displayMatrix) {
       if (chosenId === "output_svg") {
         div.innerHTML = ""
         divPro.innerHTML = ""
         if (displayId === chosenId) {
-          div.style.display = "block";
-          divPro.style.display = "block";
-          outputDisplay(chosenId, displayMatrix, displayPost);
+            outputDisplay(chosenId, displayMatrix, displayPost);
+            div.style.display = "block";
+            divPro.style.display = "block";
+            divPager.style.display = "none";
         }
         else {
           div.style.display = "none";
@@ -199,8 +204,10 @@ function displayDemo(displayId) {
         if (displayId === chosenId) {
           div.innerHTML = outputDisplay(chosenId, displayMatrix, displayPost);
           div.style.display = "block";
+          divPager.style.display = "block";
         }
         else {
+          div.innerHTML = ""
           div.style.display = "none";
         }
       }
@@ -222,7 +229,40 @@ function resetLocale(value) {
   }
 };
 
-// TO DO: paging of multiline displays; different paging type for moves vs. data
+
+function pageDemo(direction) {
+  var displayPage = this.displayPage;
+  let pageSize = getMaxPageSize();
+  let lastMove = this.moveCount[this.towerSize];
+  let currentLast = ((displayPage + 1) * pageSize) - 1;
+  let currentFirst = currentLast - pageSize + 1;
+  switch (direction) {
+    case "next":
+      if (currentLast < lastMove) {
+        displayPage++;
+      }
+      break;
+    case "prev":
+      if (currentFirst > 0) {
+        displayPage--;
+      }
+      break;
+    case "all":
+      displayPage = -99;
+      break;
+    case "start":
+      displayPage = 0;
+      break;
+    case "end":
+      displayPage = parseInt(Math.floor(lastMove / pageSize));
+      break;
+    default:
+      break;
+  }
+  displayDemo(this.displayId, displayPage);
+  //styleDemoPrompt(true);
+};
+
 // TO DO: favicon
 // TO DO: progress bar has milestones of each disc spaced appropriately
 // TO DO: pause/resume animation in addition to reset (which stops cold)

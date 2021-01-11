@@ -38,6 +38,7 @@
           <input id="button_data" class="simpleButton" type="button"
                  onclick="window.displayDemo('output_data');">
           </input>
+          <link rel="search" type="text/html" href="html/pager.html" />
         </div>
         <div id="prompt_size" class="simpleIntro"></div>
         <div>
@@ -73,11 +74,18 @@
         </div>
     </td>
       <td class="div-RightPanel">
+        <div id="output_pager" class="div-DisplayView" style="display:none;">
+          <p id="page_intro"></p>
+          <a id="page_start" href="#" onclick="window.pageDemo('start');"></a> |
+          <a id="page_prev" href="#" onclick="window.pageDemo('prev');"></a> |
+          <a id="page_all" href="#" onclick="window.pageDemo('all');"></a> |
+          <a id="page_next" href="#" onclick="window.pageDemo('next');"></a> |
+          <a id="page_end" href="#" onclick="window.pageDemo('end');"></a>
+        </div>
         <div id="output_text" class="div-DisplayView" style="display:none;"></div>
         <div id="output_data" class="div-DisplayView" style="display:none;"></div>
         <div id="output_svg" class="div-DisplayView" style="display:none;"></div>
         <div id="output_pro" class="div-DisplayView" style="display:none;"></div>
-        <div id="output_more" class="div-DisplayView" style="display:none;"></div>
       </td>
     </tr>
   </table>
