@@ -27,6 +27,12 @@ var msgFrFr = {
           textLine = " C&rsquo;est le mouvement " + values[0] + " de " + values [1] + ".";
         }
         break;
+      case "_MoveDisplayIntro":
+        if (values && (values.length === 1)) {
+          textLine += (" Déplaçant un disque à la fois, cette liste de ");
+          textLine += (values[0] + " coups atteint la fin le plus rapidement.");
+        }
+        break;
       case "_MoveExplained":
         if (values && (values.length === 2)) {
           textLine += (" <em>n</em> disques nécessitent ");
@@ -38,10 +44,13 @@ var msgFrFr = {
         textLine = "Erreur: aucune donnée d'affichage trouvée.";
         break;
       case "_NumberDisplayIntro":
-        textLine += (" De gauche à droite, de haut en bas. ");
-        textLine += (" Les nombres > 0 signifie qu&rsquo;un disque de cette taille est sur cette tour. ");
-        textLine += (" 0 signifie pas de disque. ");
-        break;
+        if (values && (values.length === 1)) {
+          textLine += (" Déplaçant un disque à la fois, cette liste de ");
+          textLine += (values[0] + " coups atteint la fin le plus rapidement.");
+          textLine += (" Les nombres> 0 signifie qu&rsquo;un disque de cette taille ");
+          textLine += (" se trouve sur cette tour. 0 signifie pas de disque. ");
+        }
+      break;
       case "_SmallDiscSize":
         textLine = "Erreur: disque trop petit en dessous";
         break;
@@ -53,7 +62,7 @@ var msgFrFr = {
         }
         break;
       case "_TimeRanOut":
-        textLine = "Le temps est écoulé! Pendant la démo, avez-vous <br/>visité d'autres sites? Changer la taille de la fenêtre?";
+        textLine = "Le temps est écoulé! Pendant la démo, avez-vous <br/>visité d&rsquo;autres sites? Changer la taille de la fenêtre?";
         break;
       case "innerHTML_link_en_us":
         textLine = "English";
@@ -61,9 +70,24 @@ var msgFrFr = {
       case "innerHTML_link_fr_fr":
         textLine = "Français";
         break;
+      case "innerHTML_page_all":
+        textLine += "&lt; Tout &gt;";
+        break;
+      case "innerHTML_page_end":
+        textLine += "Fin";
+        break;
+      case "innerHTML_page_next":
+        textLine += "Suivante &gt;";
+        break;
+      case "innerHTML_page_prev":
+        textLine += "&lt; Précédente";
+        break;
+      case "innerHTML_page_start":
+        textLine += "Début";
+        break;
       case "innerHTML_prompt_doc":
-      textLine += (" Objectif: déplacer tous les disques de ");
-      textLine += (" la première pile vers la dernière pile dans le plus petit nombre de coups. ");
+        textLine += (" Objectif: déplacer tous les disques de ");
+        textLine += (" la première pile vers la dernière pile dans le plus petit nombre de coups. ");
         break;
       case "innerHTML_prompt_label":
         textLine = "Nommez les 3 tours?";

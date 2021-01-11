@@ -58,6 +58,18 @@ function getMessages() {
   for (let link of ["en_us", "fr_fr"]) {
     setMessageField("link_" + link, attr);
   }
+  for (let page of ["start", "prev", "all", "next", "end"]) {
+    setMessageField("page_" + page, attr);
+  }
+  let pIntro = self.document.getElementById("page_intro");
+  if (pIntro) {
+    if (this.displayId === "output_data") {
+      pIntro.innerHTML = getMessageText("_NumberDisplayIntro", [this.moveCount[this.towerSize]]);
+    }
+    else if (this.displayId === "output_text") {
+      pIntro.innerHTML = getMessageText("_MoveDisplayIntro", [this.moveCount[this.towerSize]]);
+    }
+  }
 };
 
 function getMessageText(id, values) {

@@ -27,6 +27,12 @@ var msgEnUs = {
           textLine = " This is move " + values[0] + " of " + values [1] + ".";
         }
         break;
+      case "_MoveDisplayIntro":
+        if (values && (values.length === 1)) {
+          textLine += (" Moving one disc at a time, this list of ");
+          textLine += (values[0] + " moves reaches the end most rapidly.");
+        }
+        break;
       case "_MoveExplained":
         if (values && (values.length === 2)) {
           textLine += (" <em>n</em> discs require ");
@@ -38,9 +44,12 @@ var msgEnUs = {
         textLine = "Error: No display data found.";
         break;
       case "_NumberDisplayIntro":
-        textLine += (" Left to right is top to bottom. ");
-        textLine += (" Numbers > 0 means a disc of that size is on that tower. ");
-        textLine += (" 0 means no disc. ");
+        if (values && (values.length === 1)) {
+          textLine += (" Moving one disc at a time, this list of ");
+          textLine += (values[0] + " moves reaches the end most rapidly.");
+          textLine += (" Numbers > 0 means a disc of that size is on that tower. ");
+          textLine += (" 0 means no disc. ");
+        }
         break;
       case "_SmallDiscSize":
         textLine = "Error: Too small disc underneath";
@@ -60,6 +69,21 @@ var msgEnUs = {
         break;
       case "innerHTML_link_fr_fr":
         textLine = "Français";
+        break;
+      case "innerHTML_page_all":
+        textLine += "&lt; All &gt;";
+        break;
+      case "innerHTML_page_end":
+        textLine += "End";
+        break;
+      case "innerHTML_page_next":
+        textLine += "Next &gt;";
+        break;
+      case "innerHTML_page_prev":
+        textLine += "&lt; Previous";
+        break;
+      case "innerHTML_page_start":
+        textLine += "Start";
         break;
       case "innerHTML_prompt_doc":
         textLine += (" Goal: Move the tower of discs from ");

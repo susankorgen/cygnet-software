@@ -18,7 +18,11 @@ function getFontSize() {
 };
 
 function getFontHorizontalFactor() {
-  return getFontSize() * 0.75; 
+  return getFontSize() * 0.75;
+};
+
+function getMaxPageSize() {
+  return 20;
 };
 
 function initFieldValues() {
