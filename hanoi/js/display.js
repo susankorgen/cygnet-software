@@ -12,10 +12,10 @@ function outputDisplay(displayId, displayMatrix, displayPost) {
     switch(displayId) {
       case "output_text":
         this.displayId = displayId;
-        return outputText(displayMatrix, displayPost);
+        return outputChar(displayMatrix, displayPost, 'text');
       case "output_data":
         this.displayId = displayId;
-        return outputData(displayMatrix, displayPost);
+        return outputChar(displayMatrix, displayPost, 'data');
       case "output_svg":
         this.displayId = displayId;
         outputSVG(displayId, displayMatrix, displayPost);
@@ -35,21 +35,18 @@ function outputDisplay(displayId, displayMatrix, displayPost) {
     return isValid;
   };
 
-  function outputText(displayMatrix, displayPost) {
+  function outputChar(displayMatrix, displayPost, displayType) {
     styleDemoPrompt();
     var displayLength = displayMatrix.length;
     let moveTotal = displayLength - 1;
-    let lengthString = moveTotal.toString();
+    let moveString = moveTotal.toString();
+    let moveSpace = moveString.length;
     var towerString = this.towerSize.toString();
-    var displaySpace = displayLength.toString().length;
     var displayCurrent = {};
     var fullText = "";
     var textLine = "";
     let ellipsis = "    .\n    .\n    .\n";
-
-    let pIntro = self.document.getElementById("page_intro");
-    pIntro.innerHTML = getMessageText("_MoveDisplayIntro", [lengthString])
-
+    let pageIntro = self.document.getElementById("page_intro");
     fullText += "<pre>";
     let start, end, displayPageSize;
     if (this.displayPage < 0) {
@@ -65,71 +62,45 @@ function outputDisplay(displayId, displayMatrix, displayPost) {
     if (start > 0) {
       fullText += ellipsis;
     }
-    for (var i = start; i < end; i++) {
-      textLine = "";
-      if (i > 0) { // with physical moves, there is no move "0"
-        displayCurrent = displayMatrix[i];
-        var values = [displayCurrent.disc, displayPost[displayCurrent.from], displayPost[displayCurrent.to]];
-        var moveString = i.toString();
-        for (var m = displaySpace; m > moveString.length; m--) {
-          textLine += " ";
+    switch (displayType) {
+      case "text":
+        pageIntro.innerHTML = getMessageText("_MoveDisplayIntro", [moveString])
+        for (var i = start; i < end; i++) {
+          textLine = "";
+          if (i > 0) { // with physical moves, there is no move "0"
+            displayCurrent = displayMatrix[i];
+            var values = [displayCurrent.disc, displayPost[displayCurrent.from], displayPost[displayCurrent.to]];
+            moveString = i.toString();
+            for (var m = moveSpace; m > moveString.length; m--) {
+              textLine += " ";
+            }
+            textLine += " " + moveString + ": " + getMessageText("_TextDisplayLine", values);
+          }
+        fullText += textLine + "\n";
         }
-        textLine += " " + moveString + ": " + getMessageText("_TextDisplayLine", values);
-      }
-      fullText += textLine + "\n";
-    }
-    if (end < moveTotal) {
-      fullText += ellipsis;
-    }
-    fullText += "</pre>";
-    return fullText;
-  };
-
-  function outputData(displayMatrix, displayPost) {
-    styleDemoPrompt();
-    var displayLength = displayMatrix.length;
-    let moveTotal = displayLength - 1;
-    var moveString = moveTotal.toString();
-    var displaySpace = moveString.length;
-    var displayCurrent = {};
-    var fullText = "";
-    var textLine = "";
-    let ellipsis = "    .\n    .\n    .\n";
-
-    let pIntro = self.document.getElementById("page_intro");
-    pIntro.innerHTML = getMessageText("_NumberDisplayIntro", [moveString])
-
-    fullText += "<pre>";
-    let start, end, displayPageSize;
-    if (this.displayPage < 0) {
-      start = 0;
-      end = displayLength;
-    }
-    else {
-      displayPageSize = getMaxPageSize();
-      start = this.displayPage * displayPageSize;
-      end = start + displayPageSize;
-      end = (end > displayLength) ? displayLength : end;
-    }
-    if (start > 0) {
-      fullText += ellipsis;
-    }
-    for (var i = start; i < end; i++) {
-      displayCurrent = displayMatrix[i];
-      moveString = i.toString();
-      textLine = "";
-      for (var m = displaySpace; m > moveString.length; m--) {
-        textLine += " ";
-      }
-      textLine += " " + (i > 0) ? (moveString + ":") : "  ";
-      textLine += "  ";
-      for (let prop in displayCurrent) {
-        if (displayCurrent.hasOwnProperty(prop) &&
-            (typeof displayCurrent[prop] === "object")) { // display posts only
-            textLine += (displayPost[prop] + ":" + JSON.stringify(displayCurrent[prop]) + "  ");
+        break;
+      case "data":
+        pageIntro.innerHTML = getMessageText("_NumberDisplayIntro", [moveString])
+        for (var i = start; i < end; i++) {
+          displayCurrent = displayMatrix[i];
+          moveString = i.toString();
+          textLine = "";
+          for (var m = moveSpace; m > moveString.length; m--) {
+            textLine += " ";
+          }
+          textLine += " " + (i > 0) ? (moveString + ":") : "  ";
+          textLine += "  ";
+          for (let prop in displayCurrent) {
+            if (displayCurrent.hasOwnProperty(prop) &&
+                (typeof displayCurrent[prop] === "object")) { // display posts only
+                textLine += (displayPost[prop] + ":" + JSON.stringify(displayCurrent[prop]) + "  ");
+            }
+          }
+          fullText += textLine + "\n";
         }
-      }
-      fullText += textLine + "\n";
+        break;
+      default:
+        break;
     }
     if (end < moveTotal) {
       fullText += ellipsis;
