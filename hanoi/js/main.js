@@ -114,6 +114,7 @@ function displayDemo(displayId, displayPage) {
   };
 
   // Build data to drive reactive displays. Stores 1 move from hanoi().
+  // hanoi() calls this method at each iteration, to build up all moves.
   function storeDisplayData(disc, start, via, end) {
     try {
       // Clone the previous displayCurrent object; update it for this move
