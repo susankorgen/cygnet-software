@@ -215,6 +215,8 @@ function displayDemo(displayId, displayPage) {
   };
 };
 
+// Stop animation (if running) and clear the display.
+// If resumed, it will be from the start (first move).
 function resetDemo() {
   displayDemo("output_reset");
   styleDemoPrompt(true);
@@ -229,7 +231,13 @@ function resetLocale(value) {
   }
 };
 
-
+// Advance (or move back) by one page, in one of the character displays:
+// text descriptions for outputText() or integer array lists for outputData().
+// Number of lines on a page is determined by getMaxPageSize().
+// direction has these possible values:
+// "next" is forward one page, "prev" is back one page.
+// "start" shows the first page, "end" shows the last page.
+// "all" shows all available lines at the same time (no paging).
 function pageDemo(direction) {
   var displayPage = this.displayPage;
   let pageSize = getMaxPageSize();
@@ -260,11 +268,8 @@ function pageDemo(direction) {
       break;
   }
   displayDemo(this.displayId, displayPage);
-  //styleDemoPrompt(true);
 };
 
-// TO DO: favicon
-// TO DO: progress bar has milestones of each disc spaced appropriately
 // TO DO: pause/resume animation in addition to reset (which stops cold)
 // TO DO: stop animation (if displaying) if the user starts modifying inputs
 // TO DO: style input field/buttons visually; currently using browser defaults.
