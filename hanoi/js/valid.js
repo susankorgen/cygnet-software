@@ -18,7 +18,7 @@ function getFontSize() {
 };
 
 function getFontHorizontalFactor() {
-  return getFontSize() * 0.75;
+  return getFontSize() * ((getLocale() === 'zh-CN') ? 1.5 : 0.75);
 };
 
 function getMaxPageSize() {

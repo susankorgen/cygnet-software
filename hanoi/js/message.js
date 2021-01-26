@@ -10,7 +10,7 @@ function setLocale(value) {
     }
   }
   else {
-    if ((value === "en-us" ) || (value === "fr-fr")) {
+    if ((value === "en-us" ) || (value === "fr-fr") || (value === "zh-CN")) {
       this.locale = value;
     }
   }
@@ -24,7 +24,8 @@ function getLocale() {
 function initMessages() {
   this.messageText = {
     "en-us": msgEnUs.getMessageText,
-    "fr-fr": msgFrFr.getMessageText
+    "fr-fr": msgFrFr.getMessageText,
+    "zh-CN": msgZhCN.getMessageText
   };
   setLocale();
 };
@@ -55,7 +56,7 @@ function getMessages() {
   for (let prompt of ["title", "doc", "rules", "size", "label", "output", "locale", "reset"]) {
     setMessageField("prompt_" + prompt, attr);
   }
-  for (let link of ["en_us", "fr_fr"]) {
+  for (let link of ["en_us", "fr_fr", "zh_CN"]) {
     setMessageField("link_" + link, attr);
   }
   for (let page of ["start", "prev", "all", "next", "end"]) {
