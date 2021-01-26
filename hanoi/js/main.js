@@ -283,5 +283,4 @@ function pageDemo(direction) {
 // TO DO: document the specific JavaScript language skills here
 // TO DO: mobile form factor (but is actually pretty good already on iPhone11)
 // TO DO: document "startup" [re]learning/choices (IDE, source control, etc.)
-// TO DO: non-Latin characters (Chinese messages)
 // TO DO: right to left text (Hebrew or Arabic messages)

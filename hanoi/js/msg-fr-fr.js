@@ -70,6 +70,9 @@ var msgFrFr = {
       case "innerHTML_link_fr_fr":
         textLine = "Français";
         break;
+      case "innerHTML_link_zh_CN":
+        textLine = "语, 文, 话";
+        break;
       case "innerHTML_page_all":
         textLine += "&lt; Tout &gt;";
         break;
