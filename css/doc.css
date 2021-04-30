@@ -165,4 +165,17 @@ tr.zebraOff td {
 
 #div-ContentView p.p_tiny {
   font-size: 8pt;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  padding-top: 0px;
+}
+
+#div-ContentView a.a_tiny {
+  font-size: 8pt;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  color:rgb(20,149,204);
+  text-decoration: none;
+  font-weight:normal;
+  cursor:pointer;
 }
