@@ -1,4 +1,4 @@
-# cygnet-software
+# Portfolio by Susan Korgen
 
 My 12+ years of software development experience is at every level
 of the stack, from system internals to product design.
@@ -18,7 +18,7 @@ A starting point is to learn new languages that others know.
 * I refreshed **JavaScript** after 5 years away from full-time UI coding.
 
 Below are links to code and demos.
-I hope you enjoy these snapshots from my learning journey.
+I hope you enjoy these snapshots from my journey.
 
 
 **Try the demos!** https://susankorgen.github.io/cygnet-software
