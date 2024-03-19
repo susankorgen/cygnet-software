@@ -1,7 +1,6 @@
-# Retrospective
+# 2024 Retrospective
 
-I created this learning portfolio for Python in 2020.
-In 2024, looking back on 3 years at Project Ronin
+Looking back on 3 years at Project Ronin
 as a Staff Integrations Engineer and acting Principal Data Engineer in Data Science,
 I can proudly say I became fluent in both Python and Kotlin languages while
 contributing back-end code on data integration and data engineering teams.
