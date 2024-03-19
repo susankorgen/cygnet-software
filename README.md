@@ -5,7 +5,7 @@ as a Staff Integrations Engineer and acting Principal Data Engineer in Data Scie
 I can proudly say I became fluent in both Python and Kotlin languages while
 contributing back-end code on data integration and data engineering teams.
 
-Great to look back on solid progress from this 2020 starting point as a Principal Software Engineer
+Great to see solid progress since this 2020 starting point as a Principal Software Engineer
 at InterSystems specializing in InterSystems ObjectScript for back-end, and JavaScript for full-stack.
 
 # 2020 Learning Portfolio
