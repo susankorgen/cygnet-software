@@ -24,8 +24,8 @@ For professional growth,
 I seek more channels of collaboration.
 A starting point is to learn new languages that others know.
 
-* I am building **Python** to a teaching level from scratch, to reflect my data interests.
-* I refreshed **JavaScript** after 5 years away from full-time UI coding.
+* Learning **Python** to a professional level (a goal in 2020, achieved in 2023).
+* Refreshing **JavaScript** after 5 years away from full-time UI coding (achieved in 2020).
 
 Below are links to code and demos.
 I hope you enjoy these snapshots from my journey.
