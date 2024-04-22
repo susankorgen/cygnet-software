@@ -16,13 +16,14 @@ def order_drink(order):
     """
     Get the user's request, and if all conditions are met, make the drink.
     """
-    for option in menu.get_items().split("/"):
-        if option.startswith(order):
-            item = menu.find_drink(option)
-            if coffee_maker.is_resource_sufficient(item):
-                if money_machine.make_payment(item):
-                    coffee_maker.make_coffee(item)
-            break
+    if len(order) > 0:
+        for option in menu.get_items().split("/"):
+            if option.startswith(order):
+                item = menu.find_drink(option)
+                if coffee_maker.is_resource_sufficient(item):
+                    if money_machine.make_payment(item):
+                        coffee_maker.make_coffee(item)
+                break
 
 
 def next_order() -> str:
@@ -43,17 +44,18 @@ def coffee_cycle():
     To get a report of supplies and money, type 'report'.
     To stop the CoffeeMachine type 'off'.
     """
-    order = next_order()
-    while not order == "off":
-        if order != "":
-            if order == "report":
-                coffee_maker.report()
-                money_machine.report()
-            elif order == "fill":
-                coffee_maker.get_resources()
-            else:
-                order_drink(order)
+    done = False
+    while not done:
         order = next_order()
+        if order == "report":
+            coffee_maker.report()
+            money_machine.report()
+        elif order == "fill":
+            coffee_maker.get_resources()
+        elif order == "off":
+            done = True
+        else:
+            order_drink(order)
     print("All done.")
 
 
